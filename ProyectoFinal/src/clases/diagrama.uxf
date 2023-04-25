@@ -32,7 +32,8 @@
 -tipo: String
 --
 +generarAleatorio(): int
-/+mostrarPregunta(): String/</panel_attributes>
+/+mostrarPregunta(): String/
+/+responderPregunta()/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -48,7 +49,8 @@
 -respuestaCorrecta: int
 -respuestaJugador: int
 --
-+mostrarPregunta():String</panel_attributes>
++mostrarPregunta():String
++responderPregunta()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -65,7 +67,8 @@
 -respuestaJugador: String
 -longitud: int
 --
-+mostrarPregunta():String</panel_attributes>
++mostrarPregunta():String
++responderPregunta()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -82,6 +85,7 @@
 -respuestaJugador: char
 --
 +mostrarPregunta():String
++responderPregunta()
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -241,5 +245,18 @@ m2=1..4</panel_attributes>
 m1=1..n
 m2=1..4</panel_attributes>
     <additional_attributes>270.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>580</x>
+      <y>330</y>
+      <w>200</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Se omiten los métodos
+getters, setters y toString
+bg=blue</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
