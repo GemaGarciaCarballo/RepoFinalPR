@@ -223,7 +223,10 @@ m2=1..4</panel_attributes>
 -jugadores: &lt;Jugador&gt;
 -preguntas: &lt;Pregunta&gt;
 --
-+jugar()</panel_attributes>
++menu()
++jugar()
++mostrarRanking()
++guardarHistorico()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
