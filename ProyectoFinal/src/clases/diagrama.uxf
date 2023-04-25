@@ -133,7 +133,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
+      <x>290</x>
       <y>170</y>
       <w>270</w>
       <h>140</h>
@@ -155,18 +155,18 @@
       <h>180</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>230.0;10.0;230.0;120.0;300.0;120.0;10.0;120.0;10.0;160.0</additional_attributes>
+    <additional_attributes>210.0;10.0;230.0;120.0;300.0;120.0;10.0;120.0;10.0;160.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
+      <x>400</x>
       <y>300</y>
-      <w>100</w>
+      <w>120</w>
       <h>180</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0;80.0;120.0;80.0;160.0</additional_attributes>
+    <additional_attributes>10.0;10.0;30.0;120.0;100.0;120.0;100.0;160.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -200,7 +200,7 @@ OperacionesJugadores
     <coordinates>
       <x>0</x>
       <y>50</y>
-      <w>680</w>
+      <w>640</w>
       <h>620</h>
     </coordinates>
     <panel_attributes>Jugadores
@@ -211,9 +211,9 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>700</x>
+      <x>730</x>
       <y>50</y>
-      <w>790</w>
+      <w>760</w>
       <h>620</h>
     </coordinates>
     <panel_attributes>Juego
@@ -224,14 +224,42 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
+      <x>550</x>
       <y>200</y>
-      <w>430</w>
+      <w>130</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..n
 m2=1..4</panel_attributes>
-    <additional_attributes>410.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>170</y>
+      <w>160</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Partida
+--
+
+--
++jugar()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>200</y>
+      <w>190</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1..4</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
