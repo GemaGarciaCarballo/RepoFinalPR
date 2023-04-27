@@ -11,7 +11,7 @@
     </coordinates>
     <panel_attributes>Humano
 --
--puntos: int
+
 --
 +acertarPregunta(boolean): int
 +añadirJugador():boolean
@@ -128,7 +128,7 @@
     </coordinates>
     <panel_attributes>CPU
 --
--puntos: int
+
 --
 +acertarPregunta(boolean): int</panel_attributes>
     <additional_attributes/>
