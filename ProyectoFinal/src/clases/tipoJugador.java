@@ -41,4 +41,10 @@ public abstract class TipoJugador {
 		numJugadores = leer.nextInt();
 		//falta codigo
 	}
+	public boolean añadirJugador() {
+		
+	}
+	public boolean eliminarJugador() {
+		
+	}
 }

@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>42</x>
-      <y>282</y>
+      <x>36</x>
+      <y>294</y>
       <w>150</w>
       <h>84</h>
     </coordinates>
@@ -14,16 +14,14 @@
 -puntos: int
 --
 +acertarPregunta(boolean): int
-+añadirJugador():boolean
-+eliminarJugador():boolean
 +verJugador():void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>762</x>
-      <y>90</y>
+      <x>756</x>
+      <y>102</y>
       <w>126</w>
       <h>78</h>
     </coordinates>
@@ -38,8 +36,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>618</x>
-      <y>294</y>
+      <x>612</x>
+      <y>306</y>
       <w>138</w>
       <h>90</h>
     </coordinates>
@@ -54,8 +52,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>768</x>
-      <y>294</y>
+      <x>762</x>
+      <y>306</y>
       <w>138</w>
       <h>90</h>
     </coordinates>
@@ -71,8 +69,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>918</x>
-      <y>294</y>
+      <x>912</x>
+      <y>306</y>
       <w>138</w>
       <h>90</h>
     </coordinates>
@@ -88,8 +86,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>696</x>
-      <y>162</y>
+      <x>690</x>
+      <y>174</y>
       <w>138</w>
       <h>144</h>
     </coordinates>
@@ -99,8 +97,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>816</x>
-      <y>162</y>
+      <x>810</x>
+      <y>174</y>
       <w>18</w>
       <h>144</h>
     </coordinates>
@@ -110,8 +108,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>816</x>
-      <y>162</y>
+      <x>810</x>
+      <y>174</y>
       <w>180</w>
       <h>144</h>
     </coordinates>
@@ -121,8 +119,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>282</y>
+      <x>204</x>
+      <y>294</y>
       <w>150</w>
       <h>84</h>
     </coordinates>
@@ -136,8 +134,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>174</x>
-      <y>108</y>
+      <x>168</x>
+      <y>120</y>
       <w>162</w>
       <h>84</h>
     </coordinates>
@@ -147,14 +145,16 @@
 -puntos: int
 --
 /+acertarPregunta(boolean):int/
-+menuJugadores():void</panel_attributes>
++menuJugadores():void
++añadirJugador():boolean
++eliminarJugador():boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>108</x>
-      <y>186</y>
+      <x>102</x>
+      <y>198</y>
       <w>192</w>
       <h>108</h>
     </coordinates>
@@ -164,8 +164,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>186</y>
+      <x>234</x>
+      <y>198</y>
       <w>60</w>
       <h>108</h>
     </coordinates>
@@ -175,8 +175,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>24</x>
-      <y>30</y>
+      <x>18</x>
+      <y>42</y>
       <w>408</w>
       <h>372</h>
     </coordinates>
@@ -188,8 +188,8 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>600</x>
-      <y>42</y>
+      <x>594</x>
+      <y>54</y>
       <w>474</w>
       <h>372</h>
     </coordinates>
@@ -201,8 +201,8 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
-      <y>126</y>
+      <x>324</x>
+      <y>138</y>
       <w>126</w>
       <h>24</h>
     </coordinates>
@@ -214,8 +214,8 @@ m2=1..4</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>444</x>
-      <y>72</y>
+      <x>438</x>
+      <y>84</y>
       <w>132</w>
       <h>132</h>
     </coordinates>
@@ -234,8 +234,8 @@ m2=1..4</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>108</y>
+      <x>564</x>
+      <y>120</y>
       <w>204</w>
       <h>24</h>
     </coordinates>
@@ -247,8 +247,8 @@ m2=0..n</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>450</x>
-      <y>228</y>
+      <x>444</x>
+      <y>240</y>
       <w>120</w>
       <h>84</h>
     </coordinates>
