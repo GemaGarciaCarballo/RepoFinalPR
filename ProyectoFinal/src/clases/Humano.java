@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.Scanner;
+
 public class Humano extends TipoJugador {
 
 	public Humano(String nombre) {
@@ -8,9 +10,10 @@ public class Humano extends TipoJugador {
 	}
 
 	@Override
-	public int acertarPregunta(boolean acierto) {
+	public String responderPregunta(TipoPregunta pregunta) {
+		Scanner leer = new Scanner (System.in);
 		
-		return 0;
+		return null;
 	}
 
 }

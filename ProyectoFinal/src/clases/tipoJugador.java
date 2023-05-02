@@ -33,7 +33,7 @@ public abstract class TipoJugador {
 	public String toString() {
 		return "TipoJugador [nombre=" + nombre + ", puntos=" + puntos + "]";
 	}
-	public abstract int acertarPregunta(boolean acierto);
+	public abstract String responderPregunta(TipoPregunta pregunta);
 	public void menuJugadores() {
 		Scanner leer = new Scanner(System.in);
 		int numJugadores = 0;
@@ -41,10 +41,5 @@ public abstract class TipoJugador {
 		numJugadores = leer.nextInt();
 		//falta codigo
 	}
-	public boolean añadirJugador() {
-		
-	}
-	public boolean eliminarJugador() {
-		
-	}
+	
 }
