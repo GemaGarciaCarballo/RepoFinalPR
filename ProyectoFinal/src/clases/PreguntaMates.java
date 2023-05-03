@@ -25,7 +25,7 @@ public class PreguntaMates extends TipoPregunta {
 			cont++;
 		}
 		mostrarPregunta(pregunta);
-		}
+	}
 	public void mostrarPregunta(String pregunta) {
 		System.out.println(pregunta);
 	}

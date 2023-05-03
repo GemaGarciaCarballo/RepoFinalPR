@@ -3,8 +3,8 @@ package clases;
 public class CPU extends TipoJugador {
 	static private int nCPUs;
 	public CPU() {
-		super();
-		//constructor CPUS sin parametros
+		super("CPU"+nCPUs);
+		nCPUs++;
 	}
 	
 	@Override
@@ -16,21 +16,21 @@ public class CPU extends TipoJugador {
 		} else if (pregunta instanceof PreguntaLengua) {
 			this.setPuntos(this.getPuntos());
 			System.out.println("HA FALLADO");
-			//MOSTRAR RESPUESTA CORRECTA
+			//MOSTRAR RESPUESTA CORRECTA PERO AQUI NO
 		}else {
 			int respuestaAleatoria = (int) (Math.random()*(4-1)+1);
 			switch (respuestaAleatoria) {
 			case 1:
-				respuesta = "A";
+				respuesta = "0";
 				break;
 			case 2:
-				respuesta = "B";
+				respuesta = "1";
 				break;
 			case 3: 
-				respuesta = "C";
+				respuesta = "2";
 				break;
 			case 4:
-				respuesta = "D";
+				respuesta = "3";
 				break;
 			
 			}

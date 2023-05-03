@@ -2,18 +2,18 @@ package clases;
 
 import java.util.Scanner;
 
-public class Humano extends TipoJugador {
+public class Jugador extends TipoJugador {
 
-	public Humano(String nombre) {
+	public Jugador(String nombre) {
 		super(nombre);
-		
 	}
 
 	@Override
 	public String responderPregunta(TipoPregunta pregunta) {
 		Scanner leer = new Scanner (System.in);
-		
-		return null;
+		String respuesta = "";
+		respuesta = leer.next();
+		return respuesta;
 	}
 
 }

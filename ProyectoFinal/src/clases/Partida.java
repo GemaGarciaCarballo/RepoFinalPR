@@ -1,9 +1,12 @@
 package clases;
 
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Partida {
-	//jugadores
+	private Set<TipoJugador> jugadores;
+	private int rondas;
 
 	public Partida() {
 
@@ -45,10 +48,13 @@ public class Partida {
 				verJugadores();
 				break;
 			case 2:
-				añadirJugador();
+				System.out.println("¿CUÁL ES EL NOMBRE DEL JUGADOR QUE DESEA AÑADIR?");
+				añadirJugador(new Jugador(leer.next()));
 				break;
 			case 3:
-				eliminarJugador();
+				System.out.println("¿CUÁL ES EL NOMBRE DEL JUGADOR QUE DESEA ELIMINAR?");
+				//Jugador jugador = leer.next();
+				//eliminarJugador(jugador);
 				break;
 			case 4:
 				menuPrincipal();
@@ -58,13 +64,24 @@ public class Partida {
 		}
 	}
 	public void verJugadores() {
-		
+		Iterator it = jugadores.iterator();
+		while (it.hasNext()) {
+			System.out.println(it.next());// ESTO ESTÁ MAL
+		}
 	}
-	public void añadirJugador() {
-		
+	public void añadirJugador(Jugador nuevo) {
+		if (jugadores.contains(nuevo)) {
+			System.err.println("NO SE PUEDE AÑADIR, YA EXSTE EN EL SISTEMA");
+		} else {
+			jugadores.add(nuevo);
+		}
 	}
-	public void eliminarJugador() {
-		
+	public void eliminarJugador(Jugador jugador) {
+		if (jugadores.contains(jugador)) {
+			jugadores.remove(jugador);
+		} else {
+			System.err.println("NO SE PUEDE ELIMINAR, NO EXSTE EN EL SISTEMA");
+		}
 	}
 	public void jugar() {
 		
