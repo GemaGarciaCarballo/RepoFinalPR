@@ -10,6 +10,9 @@ import java.util.Set;
 
 public class PreguntaIngles extends TipoPregunta {
 	
+	public void PreguntaInges()throws FileNotFoundException {
+		generarPregunta();
+	}
 	public void generarPregunta() throws FileNotFoundException {
 		File archivo = new File ("src/juego/ingles");
 		Scanner leer = new Scanner (archivo);

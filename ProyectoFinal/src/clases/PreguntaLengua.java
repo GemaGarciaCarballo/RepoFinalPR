@@ -9,6 +9,9 @@ import java.util.Set;
 
 public class PreguntaLengua extends TipoPregunta {
 
+	public void PreguntaLengua() throws FileNotFoundException{
+		generarPregunta();
+	}
 	public void generarPregunta() throws FileNotFoundException{
 		File fichero = new File ("src/clases/juego/diccionario.txt");
 		Scanner leer = new Scanner (fichero);

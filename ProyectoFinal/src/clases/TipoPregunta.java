@@ -13,6 +13,10 @@ public abstract class TipoPregunta {
 		int aleatorio = (int) (Math.random()*(tope-1)+1);
 		return aleatorio;
 	}
+	public static int generarAleatorio(int tope, int min) {
+		int aleatorio = (int) (Math.random() * (tope + 1 - min)) + min;
+		return aleatorio;
+	}
 	public boolean comprobarPregunta(String respuesta, String respuestaCorrecta) {
 		if (respuesta.equalsIgnoreCase(respuestaCorrecta)) {
 			return true;
