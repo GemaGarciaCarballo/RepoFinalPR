@@ -9,7 +9,7 @@ public class PreguntaMates extends TipoPregunta {
 		while (!preguntaTerminada) {
 			if (longitudPregunta > 4) {
 				
-				generarAleatorio(12);
+				int num = generarAleatorio(12);
 				preguntaTerminada = true;
 			}else {
 				longitudPregunta = generarAleatorio(8);
