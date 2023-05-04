@@ -1,15 +1,17 @@
 package clases;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
 public class Partida {
-	private Set<TipoJugador> jugadores;
+	private Set<TipoJugador> jugadoresPartida;
 	private int rondas;
 
 	public Partida() {
-
+		this.jugadoresPartida = new HashSet<TipoJugador>();
+		this.jugadoresPartida.add(null);
 	}
 	
 	public void menuPrincipal() {
@@ -20,7 +22,9 @@ public class Partida {
 		respuesta = leer.nextInt();
 		switch (respuesta) {
 		case 1: 
-			jugar();
+			pantallaSeleccionJugadores();
+			int rondas = seleccionRondas();
+			jugar(rondas);
 			break;
 		case 2:
 			ranking();
@@ -45,16 +49,16 @@ public class Partida {
 		respuesta = leer.nextInt();
 		switch (respuesta) {
 			case 1: 
-				verJugadores();
+				GestionUsuario.verJugadores();
 				break;
 			case 2:
 				System.out.println("¿CUÁL ES EL NOMBRE DEL JUGADOR QUE DESEA AÑADIR?");
-				añadirJugador(new Jugador(leer.next()));
+				GestionUsuario.añadirJugador(new Jugador(leer.next()));
 				break;
 			case 3:
 				System.out.println("¿CUÁL ES EL NOMBRE DEL JUGADOR QUE DESEA ELIMINAR?");
-				//Jugador jugador = leer.next();
-				//eliminarJugador(jugador);
+				String jugador = leer.next();
+				GestionUsuario.eliminarJugador(jugador);
 				break;
 			case 4:
 				menuPrincipal();
@@ -63,27 +67,46 @@ public class Partida {
 				System.err.println("DEBE ELEGIR UNA DE LAS 4 OPCIONES DISPONIBLES");
 		}
 	}
-	public void verJugadores() {
-		Iterator it = jugadores.iterator();
-		while (it.hasNext()) {
-			System.out.println(it.next());// ESTO ESTÁ MAL
+
+	public void pantallaSeleccionJugadores() {
+		Scanner leer = new Scanner (System.in);
+		int numJugadores = 0;
+		boolean exito = false;
+		System.out.println("BIENVENIDO A LA PARTIDA");
+		System.out.println("¿CUÁNTOS JUGADORES VAN A JUGAR?");
+		numJugadores = leer.nextInt();
+		while((numJugadores > 0) && (!exito)) {
+			System.out.println("¿DE QUÉ TIPO ES EL JUGADOR: JUGADOR O MÁQUINA?");
+			String tipo = leer.next();
+			if (tipo.equalsIgnoreCase("JUGADOR")) {
+				System.out.println("ESCRIBA EL NOMBRE DEL JUGADOR SIN ESPACIOS");
+				String nombre = leer.next();
+				if (GestionUsuario.getJugadoresSistema().contains(nombre)) {
+					jugadoresPartida.add(new Jugador (nombre));
+				} else {
+					System.out.println("ESTE JUGADOR NO FIGURA EN EL SISTEMA ¿DESEA DARLO DE ALTA?");
+					if (leer.next().equalsIgnoreCase("SI")) {
+						((GestionUsuario) GestionUsuario.getJugadoresSistema()).añadirUsuarioSistema((nombre));
+						exito = true;
+					} else {
+						exito = false;
+						System.err.println("ERROR");
+					}
+				}
+			}else if (tipo.equalsIgnoreCase("MAQUINA")) {
+				jugadoresPartida.add(new CPU());
+			} else {
+				System.err.println("ERROR, LOS JUGADORES DEBEN SER JUGADORES O MÁQUINAS");
+			}
 		}
 	}
-	public void añadirJugador(Jugador nuevo) {
-		if (jugadores.contains(nuevo)) {
-			System.err.println("NO SE PUEDE AÑADIR, YA EXSTE EN EL SISTEMA");
-		} else {
-			jugadores.add(nuevo);
-		}
+	public int seleccionRondas() {
+		Scanner leer = new Scanner (System.in);
+		System.out.println("¿CUÁNTAS RONDAS QUIERE JUGAR?");
+		int numRondas = leer.nextInt();
+		return numRondas;
 	}
-	public void eliminarJugador(Jugador jugador) {
-		if (jugadores.contains(jugador)) {
-			jugadores.remove(jugador);
-		} else {
-			System.err.println("NO SE PUEDE ELIMINAR, NO EXSTE EN EL SISTEMA");
-		}
-	}
-	public void jugar() {
+	public void jugar(int rondas) {
 		
 	}
 	public void ranking() {

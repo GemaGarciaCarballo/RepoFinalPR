@@ -3,7 +3,8 @@ package clases;
 public class CPU extends TipoJugador {
 	static private int nCPUs;
 	public CPU() {
-		super("CPU"+nCPUs);
+		super();
+		this.setNombre("CPU"+nCPUs);
 		nCPUs++;
 	}
 	
