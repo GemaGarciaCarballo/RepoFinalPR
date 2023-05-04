@@ -1,5 +1,6 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -24,7 +25,9 @@ public class Partida {
 		case 1: 
 			pantallaSeleccionJugadores();
 			int rondas = seleccionRondas();
-			jugar(rondas);
+			ArrayList<TipoJugador> orden = new ArrayList<TipoJugador>();
+			orden = generarOrdenAleatorio();
+			jugar(rondas, orden);
 			break;
 		case 2:
 			ranking();
@@ -102,12 +105,52 @@ public class Partida {
 	}
 	public int seleccionRondas() {
 		Scanner leer = new Scanner (System.in);
-		System.out.println("¿CUÁNTAS RONDAS QUIERE JUGAR?");
-		int numRondas = leer.nextInt();
+		int numRondas = 0;
+		System.out.println("¿QUÉ TIPO DE PARTIDA QUIERE JUGAR? RÁPIDA, CORTA, NORMAL O LARGA");
+		String tipoPartida = leer.next();
+		boolean error = false;
+		do {
+			error = false;
+			switch (tipoPartida.toUpperCase()) {
+			case "RAPIDA":
+				numRondas = 3;
+				break;
+			case "CORTA":
+				numRondas = 5;
+				break;
+			case "NORMAL":
+				numRondas = 10;
+				break;
+			case "LARGA":
+				numRondas = 20;
+				break;
+				default:
+					System.out.println("EL TIPO DE PARTIDA DEBE SER UNA DE LAS CUATRO OPCIONES");
+					error = true;
+			}
+		} while (error);
+		
 		return numRondas;
 	}
-	public void jugar(int rondas) {
-		
+	public ArrayList<TipoJugador> generarOrdenAleatorio() {
+		ArrayList<TipoJugador> jugadoresOrdenados = new ArrayList<TipoJugador>();
+		Set<TipoJugador> jugadoresPartidaAux = new HashSet<TipoJugador>();
+		jugadoresPartidaAux.addAll(jugadoresPartida);
+		Iterator it = jugadoresPartidaAux.iterator();
+		while (it.hasNext()) {
+			jugadoresOrdenados.add((TipoJugador) it.next());
+			it.remove();
+		}
+		return jugadoresOrdenados;
+	}
+	public void jugar(int rondas, ArrayList<TipoJugador> orden) {
+		int cont = 0;
+		while (cont < rondas) {
+			System.out.println("RONDA NÚMERO "+ cont+1 + ":");
+			System.out.println("JUGADOR "+ cont+1 + "RESPONDE A LA PREGUNTA:");
+			
+
+		}
 	}
 	public void ranking() {
 		
