@@ -34,15 +34,23 @@ public class PreguntaLengua extends TipoPregunta {
 		while (numLetrasOcultas > 0) {
 			int longitud = palabra.length;
 			int i = 0;
+			boolean error = false;
 			int aleatorio = generarAleatorio(longitud);
 			if (aleatorio == palabra[i]) {
-				System.out.println("_");
-				letrasOcultas.add(String.valueOf(palabra[i]));
+				if (palabra[i]==('_')) {
+					aleatorio = generarAleatorio(longitud);
+					error = true;
+				}else {
+					System.out.println("_");
+					letrasOcultas.add(String.valueOf(palabra[i]));
+				}
 			} else {
 				System.out.println(palabra[i]);
 			}
-			longitud--;
-			numLetrasOcultas--;
+			if(!error) {
+				longitud--;
+				numLetrasOcultas--;
+			}
 		}
 		return letrasOcultas;
 	}

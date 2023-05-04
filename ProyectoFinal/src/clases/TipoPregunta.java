@@ -9,7 +9,7 @@ public abstract class TipoPregunta {
 
 	
 	//public abstract void mostrarPregunta() throws FileNotFoundException;
-	public int generarAleatorio(int tope) {
+	public static int generarAleatorio(int tope) {
 		int aleatorio = (int) (Math.random()*(tope-1)+1);
 		return aleatorio;
 	}
@@ -37,4 +37,5 @@ public abstract class TipoPregunta {
 		}
 		return acierto;
 	}
+
 }

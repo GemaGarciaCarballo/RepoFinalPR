@@ -145,12 +145,32 @@ public class Partida {
 	}
 	public void jugar(int rondas, ArrayList<TipoJugador> orden) {
 		int cont = 0;
+		Scanner leer = new Scanner (System.in);
 		while (cont < rondas) {
 			System.out.println("RONDA NÚMERO "+ cont+1 + ":");
 			System.out.println("JUGADOR "+ cont+1 + "RESPONDE A LA PREGUNTA:");
+			String pregunta = generarPreguntas(TipoPregunta.generarAleatorio(3));
+			System.out.println(pregunta);
+			//responderPregunta(); FALTA PENSARLO
 			
-
+			cont++;
 		}
+	}
+	public String generarPreguntas(int num) {
+		String pregunta = "";
+		switch (num) {
+		case 1:
+			pregunta = new PreguntaMates().toString();
+			break;
+		case 2:
+			pregunta = new PreguntaLengua().toString();
+			break;
+		case 3:
+			pregunta = new PreguntaIngles().toString();
+			break;
+				
+		}
+		return pregunta;
 	}
 	public void ranking() {
 		

@@ -9,7 +9,7 @@ public class Jugador extends TipoJugador {
 	}
 
 	@Override
-	public String responderPregunta(TipoPregunta pregunta) {
+	public String responderPregunta(TipoPregunta pregunta) {// la pregunta no sirve para na
 		Scanner leer = new Scanner (System.in);
 		String respuesta = "";
 		respuesta = leer.next();
