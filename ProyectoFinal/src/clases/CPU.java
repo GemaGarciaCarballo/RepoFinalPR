@@ -1,21 +1,21 @@
 package clases;
 
 public class CPU extends TipoJugador {
-	static private int nCPUs;
+	static private int nCPUs = 1; //para que cada vez que se juegue se reinicien las cpus
 	public CPU() {
 		super();
 		this.setNombre("CPU"+nCPUs);
 		nCPUs++;
 	}
 	
-	@Override
+	
 	public String responderPregunta(TipoPregunta pregunta) {
 		String respuesta = "";
 		if (pregunta instanceof PreguntaMates) {
-			this.setPuntos(this.getPuntos()+1);
+			this.setpuntosHistorico(this.getpuntosHistorico()+1);
 			System.out.println("HA ACERTADO");
 		} else if (pregunta instanceof PreguntaLengua) {
-			this.setPuntos(this.getPuntos());
+			this.setpuntosHistorico(this.getpuntosHistorico());
 			System.out.println("HA FALLADO");
 			//MOSTRAR RESPUESTA CORRECTA PERO AQUI NO
 		}else {

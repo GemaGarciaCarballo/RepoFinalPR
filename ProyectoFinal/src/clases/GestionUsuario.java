@@ -7,10 +7,10 @@ import java.util.Set;
 public class GestionUsuario {
 	private static Set <Jugador> jugadoresSistema;
 	
-	public static void añadirUsuarioSistema(String jugador) {
-		jugadoresSistema = new HashSet<Jugador>();
-		jugadoresSistema.add(new Jugador(jugador));
-	}
+//	public static void añadirUsuarioSistema(String jugador) {
+//		jugadoresSistema = new HashSet<Jugador>();
+//		jugadoresSistema.add(new Jugador(jugador));
+//	}
 	
 	public static void verJugadores() {
 		Iterator it = getJugadoresSistema().iterator();
@@ -22,14 +22,14 @@ public class GestionUsuario {
 		if (((TipoJugador) getJugadoresSistema()).getNombre().equals(nuevo.getNombre())) {
 			System.err.println("NO SE PUEDE AÑADIR, YA EXSTE EN EL SISTEMA");
 		} else {
-			getJugadoresSistema().add(nuevo);
+			jugadoresSistema.add(nuevo);
 		}
 	}
 	public static void eliminarJugador(String jugador) {
 		Iterator it = getJugadoresSistema().iterator();
 		while (it.hasNext()) {
 			if ( ((TipoJugador)  ((GestionUsuario) it).getJugadoresSistema()).getNombre().equals(jugador)) {// ESTÁ MAL
-				getJugadoresSistema().remove(it);
+				jugadoresSistema.remove(it);
 			} else {
 				System.err.println("NO SE PUEDE ELIMINAR, NO EXSTE EN EL SISTEMA");
 			}

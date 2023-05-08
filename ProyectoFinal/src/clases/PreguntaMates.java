@@ -5,15 +5,16 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.script.ScriptEngine;
 
 public class PreguntaMates extends TipoPregunta {
-	private String respuestaCorrecta;
+	private static String respuestaCorrecta;
 
 	public void PreguntaMates(){
 		generarPregunta();
 	}
-	public void generarPregunta() {
+	public String generarPregunta() {
 		String pregunta = "";
 		int cont = 0;
 		Set<String> signos = new HashSet<String>();
@@ -27,16 +28,17 @@ public class PreguntaMates extends TipoPregunta {
 			pregunta += it.next();
 			cont++;
 		}
-		mostrarPregunta(pregunta);
+		return pregunta;
+		//mostrarPregunta(pregunta);
 	}
-	public void mostrarPregunta(String pregunta) {
+	public static void mostrarPregunta(String pregunta) {
 		System.out.println(pregunta);
 	}
-	public void guardarRespuestaCorrecta (String pregunta) {//guardar la respuesta correcta en una variable
+	public static String guardarRespuestaCorrecta (String pregunta) throws ScriptException {//guardar la respuesta correcta en una variable
 		ScriptEngineManager manager = new ScriptEngineManager();
-		ScriptEngine engine = manager.getEngineByName(null); // no se lo que hace
-		this.respuestaCorrecta = (String) engine.eval(pregunta);
-		
+		ScriptEngine engine = manager.getEngineByName("p"); // no se lo que hace
+		respuestaCorrecta = (String) engine.eval(pregunta);
+		return respuestaCorrecta;
 	}
 	
 }

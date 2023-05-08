@@ -1,18 +1,22 @@
 package clases;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.script.ScriptException;
+
 public class Partida {
 	private Set<TipoJugador> jugadoresPartida;
 	private int rondas;
 
-	public Partida() {
+	public Partida(Set<TipoJugador> jugadores) {
 		this.jugadoresPartida = new HashSet<TipoJugador>();
-		this.jugadoresPartida.add();//añadiria los jugadores
+		this.jugadoresPartida.add((TipoJugador) jugadores);//añadiria los jugadores
 	}
 	
 	public void menuPrincipal() {
@@ -89,7 +93,7 @@ public class Partida {
 				} else {
 					System.out.println("ESTE JUGADOR NO FIGURA EN EL SISTEMA ¿DESEA DARLO DE ALTA?");
 					if (leer.next().equalsIgnoreCase("SI")) {
-						((GestionUsuario) GestionUsuario.getJugadoresSistema()).añadirUsuarioSistema((nombre));
+						((GestionUsuario) GestionUsuario.getJugadoresSistema()).añadirJugador(new Jugador(nombre));
 						exito = true;
 					} else {
 						exito = false;
@@ -143,37 +147,62 @@ public class Partida {
 		}
 		return jugadoresOrdenados;
 	}
-	public void jugar(int rondas, ArrayList<TipoJugador> orden) {
+	public void jugar(int rondas, ArrayList<TipoJugador> orden) throws ScriptException {
 		int cont = 0;
 		Scanner leer = new Scanner (System.in);
 		while (cont < rondas) {
 			System.out.println("RONDA NÚMERO "+ cont+1 + ":");
 			System.out.println("JUGADOR "+ cont+1 + "RESPONDE A LA PREGUNTA:");
-			String pregunta = generarPreguntas(TipoPregunta.generarAleatorio(3));
-			System.out.println(pregunta);
-			String respuesta = leer.next();
-			if 
+			boolean respuestaCorrecta = false;
+			int indicePreguntaAleatoria = TipoPregunta.generarAleatorio(3);
+			switch (indicePreguntaAleatoria) {
+			case 1:
+				String pregunta = generarPreguntas(indicePreguntaAleatoria);
+				PreguntaMates.mostrarPregunta(pregunta);
+				String respuestaReal = PreguntaMates.guardarRespuestaCorrecta(pregunta);
+				String respuesta = Jugador.responderPregunta();
+				respuestaCorrecta = PreguntaMates.comprobarPregunta(respuesta,respuestaReal);
+				break;
+			case 2:
+				char[] pregunta = generarPreguntas(indicePreguntaAleatoria);
+				PreguntaLengua.mostrarPregunta(pregunta);
+				PreguntaLengua.guardarRespuestaCorrecta();
+				break;
+			case 3:
+				
+				break;
+			}
+			if (respuestaCorrecta) {
+				orden.get(cont).setpuntosHistorico(orden.get(cont).getpuntosHistorico()+1);
+			}
+			if (indicePreguntaAleatoria == 1) {
+			}else if (indicePreguntaAleatoria == 2) {
+
+			}
 			//String respuestaCorrecta = conseguir respuesta correcta para pasarselo al metodo comprobarRespuesta
-			boolean respuestaCorrecta = comprobarPregunta(respuesta,);
 			
 			cont++;
 		}
 	}
-	public String generarPreguntas(int num) {
-		String pregunta = "";
+	public String generarPreguntas(int num) throws FileNotFoundException {
+		TipoPregunta pregunta = null;
+		String enunciado = "";
 		switch (num) {
 		case 1:
-			pregunta = new PreguntaMates().toString();
+			pregunta = new PreguntaMates();
+			enunciado = ((PreguntaMates)pregunta).generarPregunta();
 			break;
 		case 2:
-			pregunta = new PreguntaLengua().toString();
+			pregunta = new PreguntaLengua();
+			enunciado = Arrays.toString(((PreguntaLengua) pregunta).generarPregunta());
 			break;
 		case 3:
-			pregunta = new PreguntaIngles().toString();
+			pregunta = new PreguntaIngles();
+			enunciado = ((PreguntaIngles)pregunta).generarPregunta();
 			break;
 				
 		}
-		return pregunta;
+		return enunciado;
 	}
 	public void ranking() {
 		

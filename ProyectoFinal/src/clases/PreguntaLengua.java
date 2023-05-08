@@ -3,18 +3,20 @@ package clases;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
 public class PreguntaLengua extends TipoPregunta {
-	private Set <String> respuestaCorrecta;
+	private static Map <String, Character> respuestasCorrectas;
 	
 	public void PreguntaLengua() throws FileNotFoundException{
-		this.respuestaCorrecta = new HashSet<String>();
+		this.respuestasCorrectas = new HashMap<String, Character>();
 		generarPregunta();
 	}
-	public void generarPregunta() throws FileNotFoundException{
+	public char[] generarPregunta() throws FileNotFoundException{
 		File fichero = new File ("src/clases/juego/diccionario.txt");
 		Scanner leer = new Scanner (fichero);
 		int lineasFichero = 0;
@@ -28,23 +30,26 @@ public class PreguntaLengua extends TipoPregunta {
 		char palabraPorPartes[] = pregunta.toCharArray(); //convierto la palabra en un array de letras
 		int numLetrasOcultas = palabraPorPartes.length / 3;
 		
-		mostrarPregunta(numLetrasOcultas, palabraPorPartes);
+		//mostrarPregunta(numLetrasOcultas, palabraPorPartes);
+		return palabraPorPartes;
 	}
 	
-	public Set<String> mostrarPregunta(int numLetrasOcultas, char palabra[]){
-		Set<String> letrasOcultas = new HashSet<String>();
+	public static ArrayList<Integer> mostrarPregunta(int numLetrasOcultas, char palabra[]){
+		Integer aleatorio = 0;
+		ArrayList<Integer> aleatorioArray = new ArrayList<Integer>();//guardo todas las posiciones ocultas en un array
 		while (numLetrasOcultas > 0) {
 			int longitud = palabra.length;
 			int i = 0;
 			boolean error = false;
-			int aleatorio = generarAleatorio(longitud);
+			aleatorio = generarAleatorio(longitud);
 			if (aleatorio == palabra[i]) {
 				if (palabra[i]==('_')) {
 					aleatorio = generarAleatorio(longitud);
+					aleatorioArray.add(aleatorio);
 					error = true;
 				}else {
 					System.out.println("_");
-					letrasOcultas.add(String.valueOf(palabra[i]));
+					aleatorioArray.add(aleatorio);
 				}
 			} else {
 				System.out.println(palabra[i]);
@@ -54,11 +59,35 @@ public class PreguntaLengua extends TipoPregunta {
 				numLetrasOcultas--;
 			}
 		}
-		return letrasOcultas;
+		return aleatorioArray;
 	}
-	public void guardarRespuestaCorrecta (Set <String>letrasOcultas) {
-		this.respuestaCorrecta.addAll(letrasOcultas);
+	public static Map <String, Character> guardarRespuestaCorrecta(int numLetrasOcultas, char[]palabra,ArrayList<Integer> posicionesOcultas){
+		Map <String, Character> palabraYletras = new HashMap<String, Character>();
+		while (numLetrasOcultas > 0) {
+			int longitud = palabra.length;
+			int i = 0;
+			boolean error = false;
+			for (int j = 0; j < longitud; j++) {
+				if (j == posicionesOcultas.get(i)) {
+					palabraYletras.put("oculta"+j, palabra[i]);
+				} else {
+					palabraYletras.put("visible", palabra[i]);
+				}
+			}
+		}
+		respuestasCorrectas.putAll(palabraYletras);
+		return palabraYletras;
+		
 	}
-	//Falta recoger respuestas correctas
+//	public static Set <String> guardarRespuestaCorrecta (Map <String, Character>palabraYletras) {
+//		Set<String> respuestasCorrectas =
+//		for (int i = 0; i < palabraYletras.size(); i++) {
+//			if (palabraYletras.containsKey("oculta"+i)) {
+//				
+//			}
+//		}
+//		return respuestasCorrectas;
+//	}
+	
 
 }

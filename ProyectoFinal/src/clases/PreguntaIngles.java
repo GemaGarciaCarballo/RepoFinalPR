@@ -11,10 +11,10 @@ import java.util.Set;
 public class PreguntaIngles extends TipoPregunta {
 	private String respuestaCorrecta;
 	
-	public void PreguntaInges()throws FileNotFoundException {
+	public void PreguntaIngles()throws FileNotFoundException {
 		generarPregunta();
 	}
-	public void generarPregunta() throws FileNotFoundException {
+	public String generarPregunta() throws FileNotFoundException {
 		File archivo = new File ("src/juego/ingles");
 		Scanner leer = new Scanner (archivo);
 		int lineasFichero = 0;
@@ -32,10 +32,11 @@ public class PreguntaIngles extends TipoPregunta {
 				preguntaEncontrada = true;
 			}	
 		} while (!preguntaEncontrada);
-		rellenarPreguntaYrespuestas(aleatorio,lineasFichero);
+		String pregunta = rellenarPreguntaYrespuestas(aleatorio,lineasFichero);
+		return pregunta;
 	}
 	
-	public void rellenarPreguntaYrespuestas(int aleatorio, int lineasFichero) throws FileNotFoundException{
+	public String rellenarPreguntaYrespuestas(int aleatorio, int lineasFichero) throws FileNotFoundException{
 		File archivo = new File ("src/juego/ingles");
 		Scanner leer = new Scanner (archivo);
 		ArrayList<String> respuestas = new ArrayList<String>();
@@ -56,7 +57,8 @@ public class PreguntaIngles extends TipoPregunta {
 			}
 			i++;
 		}
-		mostrarPregunta(pregunta, respuestas);
+		return pregunta;
+		//mostrarPregunta(pregunta, respuestas);
 		
 	}
 	

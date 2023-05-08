@@ -2,7 +2,7 @@ package clases;
 
 import java.util.Scanner;
 
-public class GestionPartida {
+public class GestionPuntos {
 	
 
 }
