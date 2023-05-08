@@ -12,7 +12,7 @@ public class Partida {
 
 	public Partida() {
 		this.jugadoresPartida = new HashSet<TipoJugador>();
-		this.jugadoresPartida.add(null);
+		this.jugadoresPartida.add();//añadiria los jugadores
 	}
 	
 	public void menuPrincipal() {
@@ -151,7 +151,10 @@ public class Partida {
 			System.out.println("JUGADOR "+ cont+1 + "RESPONDE A LA PREGUNTA:");
 			String pregunta = generarPreguntas(TipoPregunta.generarAleatorio(3));
 			System.out.println(pregunta);
-			//responderPregunta(); FALTA PENSARLO
+			String respuesta = leer.next();
+			if 
+			//String respuestaCorrecta = conseguir respuesta correcta para pasarselo al metodo comprobarRespuesta
+			boolean respuestaCorrecta = comprobarPregunta(respuesta,);
 			
 			cont++;
 		}

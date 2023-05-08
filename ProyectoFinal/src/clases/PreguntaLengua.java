@@ -8,8 +8,10 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class PreguntaLengua extends TipoPregunta {
-
+	private Set <String> respuestaCorrecta;
+	
 	public void PreguntaLengua() throws FileNotFoundException{
+		this.respuestaCorrecta = new HashSet<String>();
 		generarPregunta();
 	}
 	public void generarPregunta() throws FileNotFoundException{
@@ -54,6 +56,9 @@ public class PreguntaLengua extends TipoPregunta {
 		}
 		return letrasOcultas;
 	}
-	
+	public void guardarRespuestaCorrecta (Set <String>letrasOcultas) {
+		this.respuestaCorrecta.addAll(letrasOcultas);
+	}
+	//Falta recoger respuestas correctas
 
 }

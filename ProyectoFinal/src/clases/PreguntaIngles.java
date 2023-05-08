@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class PreguntaIngles extends TipoPregunta {
+	private String respuestaCorrecta;
 	
 	public void PreguntaInges()throws FileNotFoundException {
 		generarPregunta();
@@ -34,7 +35,7 @@ public class PreguntaIngles extends TipoPregunta {
 		rellenarPreguntaYrespuestas(aleatorio,lineasFichero);
 	}
 	
-	public String rellenarPreguntaYrespuestas(int aleatorio, int lineasFichero) throws FileNotFoundException{
+	public void rellenarPreguntaYrespuestas(int aleatorio, int lineasFichero) throws FileNotFoundException{
 		File archivo = new File ("src/juego/ingles");
 		Scanner leer = new Scanner (archivo);
 		ArrayList<String> respuestas = new ArrayList<String>();
@@ -51,12 +52,12 @@ public class PreguntaIngles extends TipoPregunta {
 			}
 			if (respuestas.size() == 4) {
 				relleno = true;
-				respuestaCorrecta = respuestas.get(0);
+				this.respuestaCorrecta = respuestas.get(0);//GUARDO LA RESPUESTA CORRECTA
 			}
 			i++;
 		}
 		mostrarPregunta(pregunta, respuestas);
-		return respuestaCorrecta;
+		
 	}
 	
 	public void mostrarPregunta(String pregunta, ArrayList respuestas) {

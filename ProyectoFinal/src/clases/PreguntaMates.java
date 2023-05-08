@@ -4,8 +4,11 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptEngine;
 
 public class PreguntaMates extends TipoPregunta {
+	private String respuestaCorrecta;
 
 	public void PreguntaMates(){
 		generarPregunta();
@@ -29,5 +32,11 @@ public class PreguntaMates extends TipoPregunta {
 	public void mostrarPregunta(String pregunta) {
 		System.out.println(pregunta);
 	}
-
+	public void guardarRespuestaCorrecta (String pregunta) {//guardar la respuesta correcta en una variable
+		ScriptEngineManager manager = new ScriptEngineManager();
+		ScriptEngine engine = manager.getEngineByName(null); // no se lo que hace
+		this.respuestaCorrecta = (String) engine.eval(pregunta);
+		
+	}
+	
 }
