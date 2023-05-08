@@ -70,7 +70,7 @@ public class Partida {
 				GestionUsuario.eliminarJugador(jugador);
 				break;
 			case 4:
-				menuPrincipal();
+				menuPrincipal();//controlar exceptoins con try y catch
 				break;
 			default: 
 				System.err.println("DEBE ELEGIR UNA DE LAS 4 OPCIONES DISPONIBLES");
@@ -151,7 +151,6 @@ public class Partida {
 	}
 	public void jugar(int rondas, ArrayList<TipoJugador> orden) throws ScriptException, FileNotFoundException {
 		int cont = 0;
-		Scanner leer = new Scanner (System.in);
 		while (cont < rondas) {
 			System.out.println("RONDA NÚMERO "+ cont+1 + ":");
 			System.out.println("JUGADOR "+ cont+1 + "RESPONDE A LA PREGUNTA:");
@@ -175,17 +174,15 @@ public class Partida {
 				respuestaCorrecta = PreguntaLengua.comprobarPregunta(respuestaJugadorL,respuestaRealL);
 				break;
 			case 3:
-				
+				String preguntaI = generarPreguntas(indicePreguntaAleatoria);
+				PreguntaIngles.mostrarPregunta(preguntaI, PreguntaIngles.todasRespuestas);
+				String respuestaJugadorI = Jugador.responderPregunta();
+				respuestaCorrecta = PreguntaIngles.comprobarPregunta(respuestaJugadorI, PreguntaIngles.respuestaCorrecta);
 				break;
 			}
 			if (respuestaCorrecta) {
 				orden.get(cont).setpuntosHistorico(orden.get(cont).getpuntosHistorico()+1);
 			}
-			if (indicePreguntaAleatoria == 1) {
-			}else if (indicePreguntaAleatoria == 2) {
-
-			}
-			//String respuestaCorrecta = conseguir respuesta correcta para pasarselo al metodo comprobarRespuesta
 			
 			cont++;
 		}
