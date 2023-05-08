@@ -3,8 +3,10 @@ package clases;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -19,7 +21,7 @@ public class Partida {
 		this.jugadoresPartida.add((TipoJugador) jugadores);//añadiria los jugadores
 	}
 	
-	public void menuPrincipal() {
+	public void menuPrincipal() throws FileNotFoundException, ScriptException {
 		Scanner leer = new Scanner (System.in);
 		int respuesta = 0;
 		System.out.println("***********************");
@@ -147,7 +149,7 @@ public class Partida {
 		}
 		return jugadoresOrdenados;
 	}
-	public void jugar(int rondas, ArrayList<TipoJugador> orden) throws ScriptException {
+	public void jugar(int rondas, ArrayList<TipoJugador> orden) throws ScriptException, FileNotFoundException {
 		int cont = 0;
 		Scanner leer = new Scanner (System.in);
 		while (cont < rondas) {
@@ -157,16 +159,20 @@ public class Partida {
 			int indicePreguntaAleatoria = TipoPregunta.generarAleatorio(3);
 			switch (indicePreguntaAleatoria) {
 			case 1:
-				String pregunta = generarPreguntas(indicePreguntaAleatoria);
-				PreguntaMates.mostrarPregunta(pregunta);
-				String respuestaReal = PreguntaMates.guardarRespuestaCorrecta(pregunta);
-				String respuesta = Jugador.responderPregunta();
-				respuestaCorrecta = PreguntaMates.comprobarPregunta(respuesta,respuestaReal);
+				String preguntaM = generarPreguntas(indicePreguntaAleatoria);
+				PreguntaMates.mostrarPregunta(preguntaM);
+				String respuestaJugadorM = Jugador.responderPregunta();
+				String respuestaRealM = PreguntaMates.guardarRespuestaCorrecta(preguntaM);
+				respuestaCorrecta = PreguntaMates.comprobarPregunta(respuestaJugadorM,respuestaRealM);
 				break;
 			case 2:
-				char[] pregunta = generarPreguntas(indicePreguntaAleatoria);
-				PreguntaLengua.mostrarPregunta(pregunta);
-				PreguntaLengua.guardarRespuestaCorrecta();
+				char[] preguntaL = generarPreguntas(indicePreguntaAleatoria).toCharArray();
+				ArrayList<Integer> posicionesAleatorias = new ArrayList<Integer>();
+				posicionesAleatorias = PreguntaLengua.mostrarPregunta(preguntaL.length/3,preguntaL);
+				String respuestaJugadorL = Jugador.responderPregunta();
+				Map <String, Character> respuestaRealL = new HashMap<String, Character>();
+				respuestaRealL = PreguntaLengua.guardarRespuestaCorrecta(preguntaL.length/3,preguntaL,posicionesAleatorias);
+				respuestaCorrecta = PreguntaLengua.comprobarPregunta(respuestaJugadorL,respuestaRealL);
 				break;
 			case 3:
 				
