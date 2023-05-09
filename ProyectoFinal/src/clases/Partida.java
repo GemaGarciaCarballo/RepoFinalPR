@@ -156,32 +156,50 @@ public class Partida {
 			System.out.println("JUGADOR "+ cont+1 + "RESPONDE A LA PREGUNTA:");
 			boolean respuestaCorrecta = false;
 			int indicePreguntaAleatoria = TipoPregunta.generarAleatorio(3);
-			switch (indicePreguntaAleatoria) {
-			case 1:
-				String preguntaM = generarPreguntas(indicePreguntaAleatoria);
-				PreguntaMates.mostrarPregunta(preguntaM);
-				String respuestaJugadorM = Jugador.responderPregunta();
-				String respuestaRealM = PreguntaMates.guardarRespuestaCorrecta(preguntaM);
-				respuestaCorrecta = PreguntaMates.comprobarPregunta(respuestaJugadorM,respuestaRealM);
-				break;
-			case 2:
-				char[] preguntaL = generarPreguntas(indicePreguntaAleatoria).toCharArray();
-				ArrayList<Integer> posicionesAleatorias = new ArrayList<Integer>();
-				posicionesAleatorias = PreguntaLengua.mostrarPregunta(preguntaL.length/3,preguntaL);
-				String respuestaJugadorL = Jugador.responderPregunta();
-				Map <String, Character> respuestaRealL = new HashMap<String, Character>();
-				respuestaRealL = PreguntaLengua.guardarRespuestaCorrecta(preguntaL.length/3,preguntaL,posicionesAleatorias);
-				respuestaCorrecta = PreguntaLengua.comprobarPregunta(respuestaJugadorL,respuestaRealL);
-				break;
-			case 3:
-				String preguntaI = generarPreguntas(indicePreguntaAleatoria);
-				PreguntaIngles.mostrarPregunta(preguntaI, PreguntaIngles.todasRespuestas);
-				String respuestaJugadorI = Jugador.responderPregunta();
-				respuestaCorrecta = PreguntaIngles.comprobarPregunta(respuestaJugadorI, PreguntaIngles.respuestaCorrecta);
-				break;
-			}
-			if (respuestaCorrecta) {
-				orden.get(cont).setpuntosHistorico(orden.get(cont).getpuntosHistorico()+1);
+			if (orden.get(cont) instanceof CPU) {
+				if (indicePreguntaAleatoria < 3) {
+					orden.get(cont).responderPregunta(indicePreguntaAleatoria);
+				}else {
+					String respuesta = orden.get(cont).responderPregunta(PreguntaIngles.todasRespuestas);
+					respuestaCorrecta = PreguntaIngles.comprobarPregunta(respuesta, PreguntaIngles.respuestaCorrecta);
+					if (respuestaCorrecta) {
+						orden.get(cont).setpuntosHistorico(orden.get(cont).getpuntosHistorico()+1);
+						System.out.println("HAS ACERTADO");
+					}else {
+						System.out.println("HAS FALLADO");
+					}
+				}
+			}else {
+				switch (indicePreguntaAleatoria) {
+				case 1:
+					String preguntaM = generarPreguntas(indicePreguntaAleatoria);
+					PreguntaMates.mostrarPregunta(preguntaM);
+					String respuestaJugadorM = orden.get(cont).responderPregunta();
+					String respuestaRealM = PreguntaMates.guardarRespuestaCorrecta(preguntaM);
+					respuestaCorrecta = PreguntaMates.comprobarPregunta(respuestaJugadorM,respuestaRealM);
+					break;
+				case 2:
+					char[] preguntaL = generarPreguntas(indicePreguntaAleatoria).toCharArray();
+					ArrayList<Integer> posicionesAleatorias = new ArrayList<Integer>();
+					posicionesAleatorias = PreguntaLengua.mostrarPregunta(preguntaL.length/3,preguntaL);
+					String respuestaJugadorL = orden.get(cont).responderPregunta();
+					Map <String, Character> respuestaRealL = new HashMap<String, Character>();
+					respuestaRealL = PreguntaLengua.guardarRespuestaCorrecta(preguntaL.length/3,preguntaL,posicionesAleatorias);
+					respuestaCorrecta = PreguntaLengua.comprobarPregunta(respuestaJugadorL,respuestaRealL);
+					break;
+				case 3:
+					String preguntaI = generarPreguntas(indicePreguntaAleatoria);
+					PreguntaIngles.mostrarPregunta(preguntaI, PreguntaIngles.todasRespuestas);
+					String respuestaJugadorI = orden.get(cont).responderPregunta();
+					respuestaCorrecta = PreguntaIngles.comprobarPregunta(respuestaJugadorI, PreguntaIngles.respuestaCorrecta);
+					break;
+				}
+				if (respuestaCorrecta) {
+					orden.get(cont).setpuntosHistorico(orden.get(cont).getpuntosHistorico()+1);
+					System.out.println("HAS ACERTADO");
+				}else {
+					System.out.println("HAS FALLADO");
+				}
 			}
 			
 			cont++;
@@ -207,10 +225,5 @@ public class Partida {
 		}
 		return enunciado;
 	}
-	public void ranking() {
-		
-	}
-	public void historico() {
-		
-	}
+	
 }
