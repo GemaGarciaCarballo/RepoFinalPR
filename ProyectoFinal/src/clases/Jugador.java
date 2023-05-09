@@ -26,4 +26,6 @@ public class Jugador extends TipoJugador {
 		this.puntosRanking = puntosRanking;
 	}
 
+
+
 }

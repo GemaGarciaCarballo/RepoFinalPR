@@ -8,7 +8,7 @@ import java.util.Set;
 public abstract class TipoJugador {
 	private String nombre;
 	private int puntosHistorico;
-	
+	private int puntosRondas; //puntos rondas
 	public TipoJugador() {
 		
 	}
@@ -26,14 +26,18 @@ public abstract class TipoJugador {
 		this.nombre = nombre;
 	}
 
-	public int getpuntosHistorico() {
+	public int getPuntosHistorico() {
 		return puntosHistorico;
 	}
-
-	public void setpuntosHistorico(int puntos) {
-		this.puntosHistorico = puntos;
+	public void setPuntosHistorico(int puntosHistorico) {
+		this.puntosHistorico = puntosHistorico;
 	}
-
+	public int getPuntosRondas() {
+		return puntosRondas;
+	}
+	public void setPuntosRondas(int puntosPartida) {
+		this.puntosRondas = puntosPartida;
+	}
 	@Override
 	public String toString() {
 		return "TipoJugador [nombre=" + nombre + ", puntos=" + puntosHistorico + "]";

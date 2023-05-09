@@ -36,10 +36,10 @@ public class Partida {
 			jugar(rondas, orden);
 			break;
 		case 2:
-			ranking();
+			GestionPuntos.ranking();
 			break;
 		case 3:
-			historico();
+			GestionPuntos.historico();
 			break;
 		case 4:
 			menuJugadores();
@@ -158,12 +158,14 @@ public class Partida {
 			int indicePreguntaAleatoria = TipoPregunta.generarAleatorio(3);
 			if (orden.get(cont) instanceof CPU) {
 				if (indicePreguntaAleatoria < 3) {
-					orden.get(cont).responderPregunta(indicePreguntaAleatoria);
+					((CPU) orden.get(cont)).responderPregunta(indicePreguntaAleatoria);
 				}else {
-					String respuesta = orden.get(cont).responderPregunta(PreguntaIngles.todasRespuestas);
+					String respuesta =  ((CPU) orden.get(cont)).responderPregunta(PreguntaIngles.todasRespuestas);
 					respuestaCorrecta = PreguntaIngles.comprobarPregunta(respuesta, PreguntaIngles.respuestaCorrecta);
 					if (respuestaCorrecta) {
-						orden.get(cont).setpuntosHistorico(orden.get(cont).getpuntosHistorico()+1);
+						orden.get(cont).setPuntosHistorico(orden.get(cont).getPuntosHistorico()+1);
+						((CPU) orden.get(cont)).setPuntosRondas(orden.get(cont).getPuntosHistorico());
+
 						System.out.println("HAS ACERTADO");
 					}else {
 						System.out.println("HAS FALLADO");
@@ -174,7 +176,7 @@ public class Partida {
 				case 1:
 					String preguntaM = generarPreguntas(indicePreguntaAleatoria);
 					PreguntaMates.mostrarPregunta(preguntaM);
-					String respuestaJugadorM = orden.get(cont).responderPregunta();
+					String respuestaJugadorM = ((Jugador) orden.get(cont)).responderPregunta();
 					String respuestaRealM = PreguntaMates.guardarRespuestaCorrecta(preguntaM);
 					respuestaCorrecta = PreguntaMates.comprobarPregunta(respuestaJugadorM,respuestaRealM);
 					break;
@@ -182,7 +184,7 @@ public class Partida {
 					char[] preguntaL = generarPreguntas(indicePreguntaAleatoria).toCharArray();
 					ArrayList<Integer> posicionesAleatorias = new ArrayList<Integer>();
 					posicionesAleatorias = PreguntaLengua.mostrarPregunta(preguntaL.length/3,preguntaL);
-					String respuestaJugadorL = orden.get(cont).responderPregunta();
+					String respuestaJugadorL = ((Jugador) orden.get(cont)).responderPregunta();
 					Map <String, Character> respuestaRealL = new HashMap<String, Character>();
 					respuestaRealL = PreguntaLengua.guardarRespuestaCorrecta(preguntaL.length/3,preguntaL,posicionesAleatorias);
 					respuestaCorrecta = PreguntaLengua.comprobarPregunta(respuestaJugadorL,respuestaRealL);
@@ -190,20 +192,26 @@ public class Partida {
 				case 3:
 					String preguntaI = generarPreguntas(indicePreguntaAleatoria);
 					PreguntaIngles.mostrarPregunta(preguntaI, PreguntaIngles.todasRespuestas);
-					String respuestaJugadorI = orden.get(cont).responderPregunta();
+					String respuestaJugadorI = ((Jugador) orden.get(cont)).responderPregunta();
 					respuestaCorrecta = PreguntaIngles.comprobarPregunta(respuestaJugadorI, PreguntaIngles.respuestaCorrecta);
 					break;
 				}
 				if (respuestaCorrecta) {
-					orden.get(cont).setpuntosHistorico(orden.get(cont).getpuntosHistorico()+1);
+					orden.get(cont).setPuntosHistorico(orden.get(cont).getPuntosHistorico()+1);
+					((Jugador) orden.get(cont)).setPuntosRondas(orden.get(cont).getPuntosHistorico());
 					System.out.println("HAS ACERTADO");
 				}else {
 					System.out.println("HAS FALLADO");
 				}
 			}
 			
+			puntuacionRonda(cont,orden);
 			cont++;
 		}
+		mostrarpuntuacionFinal(orden);
+		guardarPuntuacionFinal(orden);
+		GestionPuntos.historico();
+		GestionPuntos.ranking();
 	}
 	public String generarPreguntas(int num) throws FileNotFoundException {
 		TipoPregunta pregunta = null;
@@ -225,5 +233,28 @@ public class Partida {
 		}
 		return enunciado;
 	}
+	public void puntuacionRonda (int numRonda,ArrayList<TipoJugador> orden) {
+		System.out.println("PUNTOS DE LA RONDA "+ numRonda + ":");
+		for (int i = 0; i < orden.size(); i++) {
+			System.out.println((orden.get(i)).getNombre() + ": ");
+			System.out.print((orden.get(i)).getPuntosRondas());
+		}
+		
+	}
 	
+	public void mostrarpuntuacionFinal (ArrayList<TipoJugador> orden) {
+		System.out.println("PUNTUACIÓN FINAL:");
+		for (int i = 0; i < orden.size(); i++) {
+			System.out.println((orden.get(i)).getNombre() + ": ");
+			System.out.println((orden.get(i)).getPuntosRondas());
+		}
+	}
+	
+	public void guardarPuntuacionFinal (ArrayList<TipoJugador> orden) {
+		Map<String,Integer> historicoAux = new HashMap <String,Integer>();
+		for (int i = 0; i < orden.size(); i++) {
+			historicoAux.put(orden.get(i).getNombre(), orden.get(i).getPuntosHistorico());
+		}
+		GestionPuntos.setHistorico(historicoAux);
+	}
 }
