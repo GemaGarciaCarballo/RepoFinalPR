@@ -35,10 +35,11 @@ public class PreguntaMates extends TipoPregunta {
 		System.out.println(pregunta);
 	}
 	public static String guardarRespuestaCorrecta (String pregunta) throws ScriptException {//guardar la respuesta correcta en una variable
-//		ScriptEngineManager manager = new ScriptEngineManager();
-//		ScriptEngine engine = manager.getEngineByName("p"); // no se lo que hace
-//		respuestaCorrecta = (String) engine.eval(pregunta);
+		ScriptEngineManager manager = new ScriptEngineManager();
+		ScriptEngine engine = manager.getEngineByName("Java"); // nombre de la factory de engine
+		respuestaCorrecta = (String) engine.eval(pregunta);
 		//GENERAR CODIGO PARA RECOGER RESULTADO FORMULA SI ESTO NO FUNCIONA
+		//BUSCAR LAS MULTIPLICACIONES
 		return respuestaCorrecta;
 	}
 	
