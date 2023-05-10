@@ -18,13 +18,21 @@ public class GestionPuntos {
 		File fichero = new File("src/juego/ranking.txt");
 		try {
 			FileWriter writer = new FileWriter(fichero,true);
-			Set<String> clavesHistorico = historico.keySet();
-			ArrayList<String> claves = new ArrayList<String>(clavesHistorico);
+			//Set<String> clavesHistorico = historico.keySet(); 
+			ArrayList<String> claves = new ArrayList<String>();
 			Collection<Integer> valoresHistorico = historico.values();
-			ArrayList<Integer> valores = new ArrayList<Integer>(valoresHistorico);
-			for (int i = 0; i <claves.size(); i++) {
-				writer.write(claves.get(i) + valores.get(i));
+			ArrayList<Integer> valores = new ArrayList<Integer>(valoresHistorico);//meto todos los puntos en una lista
+			
+			valores.sort(null);
+			
+			for (int i = 0; i <historico.size(); i++) {
+				if (historico.)
+				claves.add(historico.get(valores.get(i)));
+				claves.a
 			}
+//			for (int i = 0; i <claves.size(); i++) {
+//				writer.write(claves.get(i) + valores.get(i));
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

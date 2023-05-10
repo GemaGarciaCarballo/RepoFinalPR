@@ -11,6 +11,9 @@ public class GestionUsuario {
 //		jugadoresSistema = new HashSet<Jugador>();
 //		jugadoresSistema.add(new Jugador(jugador));
 //	}
+	public GestionUsuario() {
+		jugadoresSistema = new HashSet<Jugador>();
+	}
 	
 	public static void verJugadores() {
 		Iterator it = getJugadoresSistema().iterator();

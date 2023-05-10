@@ -15,7 +15,7 @@ public class CPU extends TipoJugador {
 	public void responderPregunta(int tipoPregunta) {
 		String respuesta = "";
 		if (tipoPregunta == 1) {
-			this.setPuntosHistorico(this.getPuntosHistorico()+1);
+			this.setPuntosRondas(this.getPuntosRondas()+1);
 			System.out.println("HA ACERTADO");
 		} else {
 			System.out.println("HA FALLADO");

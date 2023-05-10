@@ -8,7 +8,7 @@ import java.util.Set;
 public abstract class TipoJugador {
 	private String nombre;
 	private int puntosHistorico;
-	private int puntosRondas; //puntos rondas
+	private int puntosRondas; 
 	public TipoJugador() {
 		
 	}

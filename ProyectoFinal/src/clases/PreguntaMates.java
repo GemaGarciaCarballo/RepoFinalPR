@@ -1,12 +1,8 @@
 package clases;
 
-import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import javax.script.ScriptEngine;
 
 public class PreguntaMates extends TipoPregunta {
 	private static String respuestaCorrecta;
@@ -34,12 +30,14 @@ public class PreguntaMates extends TipoPregunta {
 	public static void mostrarPregunta(String pregunta) {
 		System.out.println(pregunta);
 	}
-	public static String guardarRespuestaCorrecta (String pregunta) throws ScriptException {//guardar la respuesta correcta en una variable
-		ScriptEngineManager manager = new ScriptEngineManager();
-		ScriptEngine engine = manager.getEngineByName("Java"); // nombre de la factory de engine
-		respuestaCorrecta = (String) engine.eval(pregunta);
+	public static String guardarRespuestaCorrecta (String pregunta) {//guardar la respuesta correcta en una variable
+//		ScriptEngineManager manager = new ScriptEngineManager();
+//		ScriptEngine engine = manager.getEngineByName("Java"); // nombre de la factory de engine
+//		respuestaCorrecta = (String) engine.eval(pregunta);
 		//GENERAR CODIGO PARA RECOGER RESULTADO FORMULA SI ESTO NO FUNCIONA
 		//BUSCAR LAS MULTIPLICACIONES
+		
+		
 		return respuestaCorrecta;
 	}
 	
