@@ -8,7 +8,11 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
 public class GestionPuntos {
 	private static Map <String,Integer> historico;
 	private static ArrayList<String> ranking;
@@ -24,7 +28,7 @@ public class GestionPuntos {
 			ArrayList<Integer> valores = new ArrayList<Integer>(valoresHistorico);//meto todos los puntos en una lista
 			
 			valores.sort(null);
-			
+			//ORDENAR RANKING CON SUS RESPECTIVAS CLAVES
 			for (int i = 0; i <historico.size(); i++) {
 				if (historico.)
 				claves.add(historico.get(valores.get(i)));

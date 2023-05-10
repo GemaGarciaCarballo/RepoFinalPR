@@ -3,7 +3,11 @@ package clases;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
 public class PreguntaMates extends TipoPregunta {
 	private static String respuestaCorrecta;
 

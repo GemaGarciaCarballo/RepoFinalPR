@@ -4,7 +4,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
-
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
 public abstract class TipoJugador {
 	private String nombre;
 	private int puntosHistorico;

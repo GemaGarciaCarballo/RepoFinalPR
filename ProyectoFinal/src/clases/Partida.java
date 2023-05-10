@@ -11,7 +11,11 @@ import java.util.Scanner;
 import java.util.Set;
 
 import javax.script.ScriptException;
-
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
 public class Partida {
 	private Set<TipoJugador> jugadoresPartida;
 	private int rondas;
@@ -86,7 +90,9 @@ public class Partida {
 				System.err.println("DEBE ELEGIR UNA DE LAS 4 OPCIONES DISPONIBLES");
 		}
 	}
-
+	/**
+	 * Método que permite al jugador elegir el número de jugadores y el tipo (Jugador o Máquina).
+	 */
 	public void pantallaSeleccionJugadores() {
 		Scanner leer = new Scanner (System.in);
 		int numJugadores = 0;
@@ -157,6 +163,10 @@ public class Partida {
 		
 		return numRondas;
 	}
+	/**
+	 * Método que vuelca en una lista los jugadores en una lista aleatoriamente.
+	 * @return Una lista con los jugadores ordenados de manera aleatoria
+	 */
 	public ArrayList<TipoJugador> generarOrdenAleatorio() {
 		ArrayList<TipoJugador> jugadoresOrdenados = new ArrayList<TipoJugador>();
 		Set<TipoJugador> jugadoresPartidaAux = new HashSet<TipoJugador>();
@@ -168,6 +178,11 @@ public class Partida {
 		}
 		return jugadoresOrdenados;
 	}
+	/**
+	 * Método que permite leer y contestar preguntas a los jugadores.
+	 * @param rondas Número de rondas que se van a jugar.
+	 * @param orden Lista de jugadores ordenados aleatoriamente.
+	 */
 	public void jugar(int rondas, ArrayList<TipoJugador> orden){
 		int contRondas = 0;
 		while (contRondas < rondas) {
@@ -230,7 +245,7 @@ public class Partida {
 		}
 		mostrarpuntuacionFinal(orden);
 		guardarPuntuacionFinal(orden);
-		finPartida();
+		menuFinPartida();
 	}
 	public String generarPreguntas(int num) {
 		TipoPregunta pregunta = null;
@@ -276,7 +291,7 @@ public class Partida {
 		}
 		GestionPuntos.setHistorico(historicoAux);
 	}
-	public void finPartida() {
+	public void menuFinPartida() {
 		Scanner leer = new Scanner(System.in);
 		GestionPuntos.historico();
 		GestionPuntos.ranking();

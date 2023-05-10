@@ -2,7 +2,11 @@ package clases;
 
 import java.util.Iterator;
 import java.util.Set;
-
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
 public class CPU extends TipoJugador {
 	static private int nCPUs = 1; //para que cada vez que se juegue se reinicien las cpus
 	public CPU() {
@@ -21,7 +25,11 @@ public class CPU extends TipoJugador {
 			System.out.println("HA FALLADO");
 		}
 	}
-
+	/**
+	 * Método que devuelve una respuesta aleatoria de las introducidas por parámetro.
+	 * @param respuestas Conjunto de respuestas posibles a una pregunta.
+	 * @return Respuesta aleatoria del conjunto.
+	 */
 	public String responderPregunta(Set<String> respuestas) {
 		String respuesta = "";
 		int numAleatorio = TipoPregunta.generarAleatorio(respuestas.size()-1);

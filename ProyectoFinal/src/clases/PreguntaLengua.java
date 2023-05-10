@@ -8,7 +8,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
 public class PreguntaLengua extends TipoPregunta {
 	private static Map <String, Character> respuestasCorrectas;
 	

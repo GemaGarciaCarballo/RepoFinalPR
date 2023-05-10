@@ -4,7 +4,11 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
 public abstract class TipoPregunta {
 	private int tipo;
 
@@ -38,6 +42,12 @@ public abstract class TipoPregunta {
 //		}
 //		return acierto;
 //	}
+	/**
+	 * Método que comprueba si la respuesta se encuentra entre el conjunto de respuestas correctas.
+	 * @param respuesta La respuesta del usuario.
+	 * @param respuestasCorrectas Conjunto de respuestas correctas.
+	 * @return true si la respuesta se encuentra entre el conjunto de posibilidades, devuelve false en caso contrario.
+	 */
 	public static boolean comprobarPregunta(String respuesta, Map<String,Character> respuestasCorrectas) {
 		boolean acierto = false;
 		int i = 0;

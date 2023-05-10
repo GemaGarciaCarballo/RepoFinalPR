@@ -1,7 +1,11 @@
 package clases;
 
 import java.util.Scanner;
-
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
 public class Jugador extends TipoJugador {
 	private int puntosRanking;
 	public Jugador(String nombre) {

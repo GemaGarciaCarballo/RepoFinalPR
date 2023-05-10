@@ -8,7 +8,11 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
-
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
 public class PreguntaIngles extends TipoPregunta {
 	protected static String respuestaCorrecta;
 	protected static Set<String> todasRespuestas;
