@@ -227,14 +227,14 @@ public class Partida {
 						break;
 					case 3:
 						String preguntaI = generarPreguntas(indicePreguntaAleatoria);
-						PreguntaIngles.mostrarPregunta(preguntaI, PreguntaIngles.todasRespuestas);
+						PreguntaIngles.mostrarPregunta(preguntaI, PreguntaIngles.getTodasRespuestas());
 						String respuestaJugadorI = ((Jugador) orden.get(i)).responderPregunta();
 						respuestaCorrecta = PreguntaIngles.comprobarPregunta(respuestaJugadorI, PreguntaIngles.respuestaCorrecta);
 						break;
 					}
 					if (respuestaCorrecta) {
 						orden.get(i).setPuntosRondas(orden.get(i).getPuntosRondas()+1);
-						((Jugador) orden.get(i)).setPuntosRondas(orden.get(i).getPuntosRondas());
+						//((Jugador) orden.get(i)).setPuntosRondas(orden.get(i).getPuntosRondas());
 						System.out.println("HAS ACERTADO");
 					}else {
 						System.out.println("HAS FALLADO");
@@ -251,6 +251,7 @@ public class Partida {
 	public String generarPreguntas(int num) {
 		TipoPregunta pregunta = null;
 		String enunciado = "";
+		int lineasFichero = 0;
 		switch (num) {
 		case 1:
 			pregunta = new PreguntaMates();
@@ -258,12 +259,14 @@ public class Partida {
 			break;
 		case 2:
 			pregunta = new PreguntaLengua();
-			//int lineasFichero = ((PreguntaLengua) pregunta).leerFichero();
-			//enunciado = Arrays.toString(((PreguntaLengua) pregunta).generarPregunta(lineasFichero));
+			lineasFichero = ((PreguntaLengua) pregunta).leerFichero();
+			enunciado = Arrays.toString(((PreguntaLengua) pregunta).generarPregunta(lineasFichero));
 			break;
 		case 3:
+			
 			pregunta = new PreguntaIngles();
-			enunciado = ((PreguntaIngles)pregunta).generarPregunta();
+			lineasFichero = ((PreguntaIngles) pregunta).leerFichero();
+			enunciado = ((PreguntaIngles)pregunta).generarPregunta(lineasFichero);
 			break;
 				
 		}

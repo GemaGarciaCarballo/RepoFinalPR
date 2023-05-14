@@ -15,34 +15,44 @@ import java.util.Set;
  */
 public class PreguntaIngles extends TipoPregunta {
 	protected static String respuestaCorrecta;
-	protected static Set<String> todasRespuestas;
+	protected static Set<String> todasRespuestas = new HashSet<String>();;
 	
 	public void PreguntaIngles() {
-		todasRespuestas = new HashSet<String>();
-		generarPregunta();
+		//generarPregunta();
 	}
-	public String generarPregunta()  {
+	public int leerFichero() {
+		File fichero = new File ("src/juego/ingles.txt");
+		Scanner leer;
+		int lineasFichero = 0;
+		try {
+			leer = new Scanner (fichero);
+			while (leer.hasNextLine()) {
+				leer.nextLine();
+				lineasFichero++;
+			}
+			leer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	
+		return lineasFichero;
+	}
+	public String generarPregunta(int lineasFichero)  {
 		String pregunta = "";
 		File archivo = new File ("src/juego/ingles.txt");
 		Scanner leer;
 		try {
 			leer = new Scanner (archivo);
-			int lineasFichero = 0;
-			Integer aleatorio = generarAleatorio(lineasFichero-5);
-			boolean preguntaEncontrada = false;
-			while (leer.hasNext()) {
-				leer.next();
-				lineasFichero++;
+			Integer linea = 1;
+			int tope = (lineasFichero/5)-1;
+			Integer indiceAleatorio = generarAleatorio(1,tope);
+			if (indiceAleatorio != 1) {
+				for (int i = 0; i < indiceAleatorio; i++) {
+					linea += 5;
+				}
+				indiceAleatorio = linea;
 			}
-			leer.close();
-			do {
-				if ((aleatorio != 0) || (aleatorio != lineasFichero-5) || (aleatorio % 5 == 0)) {
-					aleatorio += 1;
-				} else {
-					preguntaEncontrada = true;
-				}	
-			} while (!preguntaEncontrada);
-			pregunta = rellenarPreguntaYrespuestas(aleatorio,lineasFichero);
+			pregunta = rellenarPreguntaYrespuestas(indiceAleatorio,lineasFichero);
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR AL LEER EL FICHERO");
 			e.printStackTrace();
@@ -51,35 +61,40 @@ public class PreguntaIngles extends TipoPregunta {
 	}
 	
 	public String rellenarPreguntaYrespuestas(Integer aleatorio, int lineasFichero) {
-		File archivo = new File ("src/juego/ingles");
+		File archivo = new File ("src/juego/ingles.txt");
 		Scanner leer;
 		String pregunta = "";
 		try {
 			leer = new Scanner (archivo);
-			ArrayList<String> preguntaYrespuestas = new ArrayList<String>();
-			//String respuestaCorrecta = "";
+			ArrayList<String> respuestas = new ArrayList<String>();
 			//ENCONTRAR PREGUNTA LOCALIZADA EN LA LINEA ALEATORIA Y METERLA EN PREGUNTA Y LAS RESPUESTAS EN UN LINKEDHASHSET
-			int i = 0;
-			boolean relleno = false;
-			while ((i < lineasFichero) && (!relleno)) {
+			int i = 1;
+			boolean respuestaCorrectaRellena = false;
+			while (todasRespuestas.size() < 4) {
 				if (i == aleatorio) {
-					pregunta = leer.next();
-				} else if ((i > aleatorio) && (preguntaYrespuestas.size() < 6)) {
-					preguntaYrespuestas.add(leer.next());
-					todasRespuestas.add(preguntaYrespuestas.get(i));
+					pregunta = leer.nextLine();
+					i += 1;
+				} else if ((i > aleatorio) && (respuestas.size() < 5)) {
+					if (i == (aleatorio+1)) {
+						respuestaCorrecta = leer.nextLine(); //guardo la respuesta correcta
+						todasRespuestas.add(respuestaCorrecta);
+//						i -=1;
+					} else {
+						todasRespuestas.add(leer.nextLine());//guardo todas las respuestas
+					}
+					i += 1;
+				}else {
+					for(int j = 0; j < 5; j++) {
+						leer.nextLine();
+					}
+					i += 5;
 				}
-				if (preguntaYrespuestas.size() == 6) {
-					relleno = true;
-					respuestaCorrecta = preguntaYrespuestas.get(2);//GUARDO LA RESPUESTA CORRECTA
-				}
-				i++;
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR AL LEER EL FICHERO");
 			e.printStackTrace();
 		}
 		return pregunta;
-		//mostrarPregunta(pregunta, respuestas);
 		
 	}
 	
@@ -90,6 +105,18 @@ public class PreguntaIngles extends TipoPregunta {
 			System.out.println(it.next());
 			it.remove();
 		}
+	}
+	public static String getRespuestaCorrecta() {
+		return respuestaCorrecta;
+	}
+	public static void setRespuestaCorrecta(String respuestaCorrecta) {
+		PreguntaIngles.respuestaCorrecta = respuestaCorrecta;
+	}
+	public static Set<String> getTodasRespuestas() {
+		return todasRespuestas;
+	}
+	public static void setTodasRespuestas(Set<String> todasRespuestas) {
+		PreguntaIngles.todasRespuestas = todasRespuestas;
 	}
 	
 

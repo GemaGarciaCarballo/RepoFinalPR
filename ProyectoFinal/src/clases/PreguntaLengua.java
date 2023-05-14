@@ -22,15 +22,20 @@ public class PreguntaLengua extends TipoPregunta {
 //		System.out.println(lineasFichero);
 		//generarPregunta(lineasFichero);
 	}
-	public int leerFichero() throws FileNotFoundException {
+	public int leerFichero(){
 		File fichero = new File ("src/juego/diccionario.txt");
-		Scanner leer  = new Scanner (fichero);
+		Scanner leer;
 		int lineasFichero = 0;
+		try {
+			leer = new Scanner (fichero);
 			while (leer.hasNextLine()) {
 				leer.next();
 				lineasFichero++;
 			}
 			leer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	
 		return lineasFichero;
 	}
