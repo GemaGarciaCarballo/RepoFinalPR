@@ -23,41 +23,49 @@ public class GestionUsuario {
 
 	public void annadirJugador(Jugador nuevo) {
 
-		this.getJugadoresSistema()
-				.stream()
-				.filter(objeto -> objeto.getNombre().equals(nuevo.getNombre()))
-				.findFirst()
-				.orElseGet(() -> {
-					this.getJugadoresSistema().add(nuevo);
-					return nuevo;
-				});
+//		this.getJugadoresSistema()
+//				.stream()
+//				.filter(objeto -> objeto.getNombre().equals(nuevo.getNombre()))
+//				.findFirst()
+//				.orElseGet(() -> {
+//					this.getJugadoresSistema().add(nuevo);
+//					return nuevo;
+//				});
 
-		//patron de la bandera
-//		boolean encontrado = Boolean.FALSE;
-//		for(Jugador j : this.getJugadoresSistema()){
-//			if (!encontrado){
-//				if (j.getNombre().equals(nuevo.getNombre())){
-//					encontrado = Boolean.TRUE;
-//				}
-//			}
-//		}
-//		if (!encontrado){
-//			this.getJugadoresSistema().add(nuevo);
-		// Y GRABAR EN EL FICHERO DE JUGADORES
-//		} else {
-//			System.out.println("El jugador ya existe en el juego");
-//		}
+		boolean encontrado = false;
+		for(Jugador jugador : this.getJugadoresSistema()){
+			if (jugador.getNombre().equals(nuevo.getNombre())){
+				encontrado = true;
+			}
+		}
+		if (!encontrado){
+			this.getJugadoresSistema().add(nuevo);
+		// GRABAR EN EL FICHERO DE JUGADORES
+		} else {
+			System.out.println("EL JUGADOR YA EXISTE");
+		}
 	}
-//	public void eliminarJugador(String jugador) {
-//		Iterator<Jugador> it = getJugadoresSistema().iterator();
+	public void eliminarJugador(String jugador) {
+		//Iterator<Jugador> it = getJugadoresSistema().iterator();
+		int cont = 0;
 //		while (it.hasNext()) {
-//			if ( ((TipoJugador)  ((GestionUsuario) it).getJugadoresSistema()).getNombre().equals(jugador)) {// ESTÁ MAL
+//			if (((GestionUsuario) it).getJugadoresSistema().get(cont).getNombre().equals(jugador)) {// ESTÁ MAL
 //				this.jugadoresSistema.remove(it);
 //			} else {
 //				System.err.println("NO SE PUEDE ELIMINAR, NO EXSTE EN EL SISTEMA");
 //			}
+//			cont++;
 //		}
-//	}
+		while (cont < this.jugadoresSistema.size()) {
+			if (getJugadoresSistema().get(cont).getNombre().equals(jugador)) {
+				this.jugadoresSistema.remove(cont);
+				//ELIMINAR DEL RANKING Y DEL FICHERO JUGADORES
+			} else {
+				System.err.println("NO SE PUEDE ELIMINAR, NO EXSTE EN EL SISTEMA");
+			}
+			cont++;
+		}
+	}
 
 	public ArrayList<Jugador> getJugadoresSistema() {
 		return jugadoresSistema;
@@ -68,12 +76,11 @@ public class GestionUsuario {
 	}
 
 	public boolean existeJugador(String nombre) {
-		//patron de la bandera
-		boolean encontrado = Boolean.FALSE;
-		for(Jugador j : this.getJugadoresSistema()){
+		boolean encontrado = false;
+		for(Jugador jugador : this.getJugadoresSistema()){
 			if (!encontrado){
-				if (j.getNombre().equals(nombre)){
-					encontrado = Boolean.TRUE;
+				if (jugador.getNombre().equals(nombre)){
+					encontrado = true;
 				}
 			}
 		}

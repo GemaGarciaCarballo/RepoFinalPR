@@ -294,6 +294,7 @@ public class Partida {
 		for (int i = 0; i < orden.size(); i++) {
 			historicoAux.put(orden.get(i).getNombre(), orden.get(i).getPuntosHistorico());
 		}
+		//LLAMAR A RANKING Y A HISTORICO PARA GUARDAR LOS PUNTOS
 		GestionPuntos.setHistorico(historicoAux);
 	}
 	public void menuFinPartida() {

@@ -19,7 +19,6 @@ public class GestionPuntos {
 		File fichero = new File("src/juego/ranking.txt");
 		try {
 			FileWriter writer = new FileWriter(fichero,true);
-			//ORDENAR RANKING CON SUS RESPECTIVAS CLAVES: DEBERÍA VOL
 			List<Map.Entry<String, Integer>> listaHistorico = new ArrayList<>((historico.entrySet()));
 			listaHistorico.sort(Entry.comparingByValue());
 			for (Entry<String, Integer> entrada: listaHistorico) {
