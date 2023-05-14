@@ -23,7 +23,7 @@ public class PreguntaIngles extends TipoPregunta {
 	}
 	public String generarPregunta()  {
 		String pregunta = "";
-		File archivo = new File ("src/juego/ingles");
+		File archivo = new File ("src/juego/ingles.txt");
 		Scanner leer;
 		try {
 			leer = new Scanner (archivo);

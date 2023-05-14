@@ -25,10 +25,13 @@ public class PreguntaMates extends TipoPregunta {
 		int longitudPregunta = generarAleatorio(8,4);
 		while (cont < longitudPregunta) {
 			pregunta +=  generarAleatorio(12,2);
-			if (it.next() != null){
-				pregunta += it.next();
-			}else {
-				//o reiniciar de alguna manera el iterator o crear uno auxiliar o rellenarlo con mas signos
+			if (cont != longitudPregunta-1) {
+				if (cont == 3 || cont == 6){
+					it = signos.iterator();
+					pregunta += it.next();
+				}else {
+					pregunta += it.next();
+				}
 			}
 			cont++;
 		}

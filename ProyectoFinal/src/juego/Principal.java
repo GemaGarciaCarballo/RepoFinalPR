@@ -1,5 +1,6 @@
 package juego;
 
+import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,8 +11,17 @@ import clases.*;
  *
  */
 public class Principal {
-	public static void main(String[] args) {
-		Partida a = new Partida();
-		a.menuPrincipal();
+	public static void main(String[] args) throws FileNotFoundException {
+		//Partida a = new Partida();
+	//	a.menuPrincipal();
+//		TipoPregunta l = new PreguntaLengua();
+//		int lineas = ((PreguntaLengua) l).leerFichero();
+//		
+//		char pregunta[] = ((PreguntaLengua) l).generarPregunta(lineas);
+//		((PreguntaLengua) l).mostrarPregunta(pregunta.length/3,pregunta);
+		
+		TipoPregunta i = new PreguntaIngles();
+		
+		
 	}
 }

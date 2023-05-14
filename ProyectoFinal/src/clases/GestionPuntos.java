@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * 
@@ -11,36 +12,24 @@ import java.util.*;
  *
  */
 public class GestionPuntos {
-	private static Map <String,Integer> historico = new HashMap<>();
-	private static ArrayList<String> ranking;
+	private static Map <String,Integer> historico = new HashMap<String,Integer>();
+	private static Map<String, Integer> ranking = new LinkedHashMap<String,Integer>();
 	
 	public static void ranking() {
-		//ranking = new ArrayList<String>();
 		File fichero = new File("src/juego/ranking.txt");
 		try {
 			FileWriter writer = new FileWriter(fichero,true);
-			//Set<String> clavesHistorico = historico.keySet(); 
-			ArrayList<String> claves = new ArrayList<String>();
-			Collection<Integer> valoresHistorico = historico.values();
-			ArrayList<Integer> valores = new ArrayList<Integer>(valoresHistorico);//meto todos los puntos en una lista
-			
-			valores.sort(null);
-			//ORDENAR RANKING CON SUS RESPECTIVAS CLAVES
-			for (int i = 0; i <historico.size(); i++) {
-//				if (historico.)
-//				claves.add(historico.get(valores.get(i)));
-//				claves.a
+			//ORDENAR RANKING CON SUS RESPECTIVAS CLAVES: DEBERÍA VOL
+			List<Map.Entry<String, Integer>> listaHistorico = new ArrayList<>((historico.entrySet()));
+			listaHistorico.sort(Entry.comparingByValue());
+			for (Entry<String, Integer> entrada: listaHistorico) {
+				ranking.put(entrada.getKey(), entrada.getValue());
 			}
-//			for (int i = 0; i <claves.size(); i++) {
-//				writer.write(claves.get(i) + valores.get(i));
-//			}
-//			List<Map.Entry<K, V>> lista = new ArrayList<>()(historico.entrySet());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	public static void historico() {
-		//historico = new HashMap<String, Integer>();
 		File fichero = new File("src/juego/historico.txt");
 		try {
 			FileWriter writer = new FileWriter(fichero,true);
@@ -53,12 +42,12 @@ public class GestionPuntos {
 		return historico;
 	}
 	public static void setHistorico(Map<String, Integer> historico) {
-		historico = historico;
+		GestionPuntos.historico = historico;
 	}
-	public static ArrayList<String> getRanking() {
+	public static Map<String, Integer> getRanking() {
 		return ranking;
 	}
-	public static void setRanking(ArrayList<String> ranking) {
+	public static void setRanking(Map<String, Integer> ranking) {
 		GestionPuntos.ranking = ranking;
 	}
 

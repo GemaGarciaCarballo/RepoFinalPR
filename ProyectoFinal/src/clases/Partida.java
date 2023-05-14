@@ -89,6 +89,7 @@ public class Partida {
 		Scanner leer = new Scanner (System.in);
 		int numJugadores = 0;
 		boolean respuestaNula = false;
+		boolean elegirOtroJugador = false;
 		System.out.println("BIENVENIDO A LA PARTIDA");
 		System.out.println("¿CUÁNTOS JUGADORES VAN A JUGAR?");
 		numJugadores = leer.nextInt();
@@ -98,25 +99,30 @@ public class Partida {
 			String tipo = leer.next();
 			try {
 				if (tipo.equalsIgnoreCase("JUGADOR")) {
-					System.out.println("ESCRIBA EL NOMBRE DEL JUGADOR SIN ESPACIOS");
-					String nombre = leer.next();
-					if (gestionUsuario.existeJugador(nombre)) {
-						gestionUsuario.annadirJugador(new Jugador (nombre)); // esta linea es hacer un new a partir del fichero txt
-						this.jugadoresPartida.add(new Jugador (nombre));
-					} else {
-						do {
-							respuestaNula = false;
-							System.out.println("ESTE JUGADOR NO FIGURA EN EL SISTEMA ¿DESEA DARLO DE ALTA?");
-							if (leer.next().equalsIgnoreCase("SI")) {
-								this.gestionUsuario.annadirJugador(new Jugador(nombre));
-								this.jugadoresPartida.add(new Jugador (nombre));
-							}else if (leer.next().equalsIgnoreCase("no")){
-								//seleccione otro jugador
-							}else{
-								respuestaNula = true;
-							}
-						}while (respuestaNula);
-					}
+					do {
+						System.out.println("ESCRIBA EL NOMBRE DEL JUGADOR SIN ESPACIOS");
+						String nombre = leer.next();
+						elegirOtroJugador = false;
+						if (gestionUsuario.existeJugador(nombre)) {
+							gestionUsuario.annadirJugador(new Jugador (nombre)); // esta linea es hacer un new a partir del fichero txt
+							this.jugadoresPartida.add(new Jugador (nombre));
+						} else {
+							do {
+								respuestaNula = false;
+								System.out.println("ESTE JUGADOR NO FIGURA EN EL SISTEMA ¿DESEA DARLO DE ALTA?");
+								String respuesta = leer.next();
+								if (respuesta.equalsIgnoreCase("SI")) {
+									this.gestionUsuario.annadirJugador(new Jugador(nombre));
+									this.jugadoresPartida.add(new Jugador (nombre));
+								}else if (respuesta.equalsIgnoreCase("NO")){
+									//System.out.println("ESCRIBA EL NOMBRE DE OTRO JUGADOR");
+									elegirOtroJugador = true;
+								}else{
+									respuestaNula = true;
+								}
+							}while (respuestaNula);
+						}
+					}while(elegirOtroJugador);
 					numJugadores--;
 				}else if (tipo.equalsIgnoreCase("MAQUINA")) {
 					this.jugadoresPartida.add(new CPU());
@@ -252,7 +258,8 @@ public class Partida {
 			break;
 		case 2:
 			pregunta = new PreguntaLengua();
-			enunciado = Arrays.toString(((PreguntaLengua) pregunta).generarPregunta());
+			//int lineasFichero = ((PreguntaLengua) pregunta).leerFichero();
+			//enunciado = Arrays.toString(((PreguntaLengua) pregunta).generarPregunta(lineasFichero));
 			break;
 		case 3:
 			pregunta = new PreguntaIngles();

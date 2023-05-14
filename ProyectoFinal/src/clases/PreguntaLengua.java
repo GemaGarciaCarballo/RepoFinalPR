@@ -18,21 +18,30 @@ public class PreguntaLengua extends TipoPregunta {
 	
 	public void PreguntaLengua(){
 		this.respuestasCorrectas = new HashMap<String, Character>();
-		generarPregunta();
+//		int lineasFichero = leerFichero();
+//		System.out.println(lineasFichero);
+		//generarPregunta(lineasFichero);
 	}
-	public char[] generarPregunta() {
+	public int leerFichero() throws FileNotFoundException {
+		File fichero = new File ("src/juego/diccionario.txt");
+		Scanner leer  = new Scanner (fichero);
+		int lineasFichero = 0;
+			while (leer.hasNextLine()) {
+				leer.next();
+				lineasFichero++;
+			}
+			leer.close();
+	
+		return lineasFichero;
+	}
+	public char[] generarPregunta(int lineasFichero) {
 		File fichero = new File ("src/juego/diccionario.txt");
 		Scanner leer;
 		char[] palabraPorPartes = null;
 		try {
-			leer = new Scanner (fichero);
-			int lineasFichero = 0;
-			while (leer.hasNextLine()) {
-				lineasFichero++;
-			}
-			leer.close();
 			ArrayList<String> palabras = new ArrayList<String>();
 			int indiceAleatorio = generarAleatorio(lineasFichero);
+			System.out.println(indiceAleatorio);
 			leer = new Scanner (fichero);
 			while (leer.hasNextLine()) {
 				palabras.add(leer.next());
@@ -41,8 +50,9 @@ public class PreguntaLengua extends TipoPregunta {
 			palabraPorPartes = pregunta.toCharArray(); //convierto la palabra en un array de letras
 			int numLetrasOcultas = palabraPorPartes.length / 3;
 			leer.close();
+			System.out.println(palabraPorPartes);
 		} catch (FileNotFoundException e) {
-			System.out.println("ERROR AL LEER EL FICHERO"); //a dado error al leer el fichero
+			System.out.println("ERROR AL LEER EL FICHERO");
 			e.printStackTrace();
 		}
 		
@@ -52,28 +62,33 @@ public class PreguntaLengua extends TipoPregunta {
 	
 	public static ArrayList<Integer> mostrarPregunta(int numLetrasOcultas, char palabra[]){
 		Integer aleatorio = 0;
-		ArrayList<Integer> aleatorioArray = new ArrayList<Integer>();//guardo todas las posiciones ocultas en un array
+		//guardo todas las posiciones ocultas en un array
+		//NO DEBERÍA GUARDARME LAS LETRAS EN VEZ DE LAS POSICIONES?
+		ArrayList<Integer> aleatorioArray = new ArrayList<Integer>();
 		while (numLetrasOcultas > 0) {
 			int longitud = palabra.length;
 			int i = 0;
-			boolean error = false;
 			aleatorio = generarAleatorio(longitud);
-			if (aleatorio == palabra[i]) {
-				if (palabra[i]==('_')) {
-					aleatorio = generarAleatorio(longitud);
-					aleatorioArray.add(aleatorio);
-					error = true;
-				}else {
-					System.out.println("_");
-					aleatorioArray.add(aleatorio);
+			while(longitud > 0) {
+				boolean error = false;
+				if (aleatorio == palabra[i]) {
+					if (palabra[i]==('_')) {
+						aleatorio = generarAleatorio(longitud);
+						aleatorioArray.add(aleatorio);
+						error = true;
+					}else {
+						System.out.print("_");
+						aleatorioArray.add(aleatorio);
+					}
+				} else {
+					System.out.print(palabra[i]);
 				}
-			} else {
-				System.out.println(palabra[i]);
+				if(!error) {
+					longitud--;
+				}
+				i++;
 			}
-			if(!error) {
-				longitud--;
-				numLetrasOcultas--;
-			}
+			numLetrasOcultas--;
 		}
 		return aleatorioArray;
 	}
