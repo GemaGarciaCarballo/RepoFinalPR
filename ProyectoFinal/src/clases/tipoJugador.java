@@ -19,7 +19,7 @@ public abstract class TipoJugador {
 	public TipoJugador(String jugador) {
 		this.nombre = jugador;
 		this.puntosHistorico = 0;
-		GestionUsuario.añadirJugador(new Jugador(jugador));
+//		GestionUsuario.añadirJugador(new Jugador(jugador));
 	}
 	
 	public String getNombre() {

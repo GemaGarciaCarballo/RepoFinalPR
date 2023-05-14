@@ -21,7 +21,7 @@ public class PreguntaLengua extends TipoPregunta {
 		generarPregunta();
 	}
 	public char[] generarPregunta() {
-		File fichero = new File ("src/clases/juego/diccionario.txt");
+		File fichero = new File ("src/juego/diccionario.txt");
 		Scanner leer;
 		char[] palabraPorPartes = null;
 		try {
@@ -42,7 +42,7 @@ public class PreguntaLengua extends TipoPregunta {
 			int numLetrasOcultas = palabraPorPartes.length / 3;
 			leer.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("ERROR AL LEER EL FICHERO");
+			System.out.println("ERROR AL LEER EL FICHERO"); //a dado error al leer el fichero
 			e.printStackTrace();
 		}
 		

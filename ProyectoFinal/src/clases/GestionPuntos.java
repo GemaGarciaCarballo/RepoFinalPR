@@ -3,18 +3,15 @@ package clases;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
+
 /**
  * 
  * @author Gema García Carballo
  *
  */
 public class GestionPuntos {
-	private static Map <String,Integer> historico;
+	private static Map <String,Integer> historico = new HashMap<>();
 	private static ArrayList<String> ranking;
 	
 	public static void ranking() {
@@ -30,13 +27,14 @@ public class GestionPuntos {
 			valores.sort(null);
 			//ORDENAR RANKING CON SUS RESPECTIVAS CLAVES
 			for (int i = 0; i <historico.size(); i++) {
-				if (historico.)
-				claves.add(historico.get(valores.get(i)));
-				claves.a
+//				if (historico.)
+//				claves.add(historico.get(valores.get(i)));
+//				claves.a
 			}
 //			for (int i = 0; i <claves.size(); i++) {
 //				writer.write(claves.get(i) + valores.get(i));
 //			}
+//			List<Map.Entry<K, V>> lista = new ArrayList<>()(historico.entrySet());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

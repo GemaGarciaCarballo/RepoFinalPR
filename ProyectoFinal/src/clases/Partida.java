@@ -1,6 +1,5 @@
 package clases;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,7 +9,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import javax.script.ScriptException;
 /**
  * 
  * @author Gema García Carballo
@@ -19,17 +17,11 @@ import javax.script.ScriptException;
 public class Partida {
 	private Set<TipoJugador> jugadoresPartida;
 	private int rondas;
+	private GestionUsuario gestionUsuario= new GestionUsuario();
 
-//	public Partida(Set<TipoJugador> jugadores) {
-//		this.jugadoresPartida = new HashSet<TipoJugador>();
-//		this.jugadoresPartida.add((TipoJugador) jugadores);//añadiria los jugadores
-//	}
 	public Partida() {
-		//inicializarJugadores();
 	}
-//	public void inicializarJugadores() {
-//		GestionUsuario.inicializarJugadores();
-//	}
+
 	public void menuPrincipal() {
 		Scanner leer = new Scanner (System.in);
 		int respuesta = 0;
@@ -71,17 +63,17 @@ public class Partida {
 		System.out.println("OPCIONES DE JUGADORES: \n 1) VER JUGADORES \n 2) AÑADIR JUGADOR \n 3) ELIMINAR JUGADOR \n 4) VOLVER");
 		respuesta = leer.nextInt();
 		switch (respuesta) {
-			case 1: 
-				GestionUsuario.verJugadores();
+			case 1:
+				gestionUsuario.verJugadores();
 				break;
 			case 2:
 				System.out.println("¿CUÁL ES EL NOMBRE DEL JUGADOR QUE DESEA AÑADIR?");
-				GestionUsuario.añadirJugador(new Jugador(leer.next()));
+				gestionUsuario.annadirJugador(new Jugador(leer.next()));
 				break;
 			case 3:
 				System.out.println("¿CUÁL ES EL NOMBRE DEL JUGADOR QUE DESEA ELIMINAR?");
 				String jugador = leer.next();
-				GestionUsuario.eliminarJugador(jugador);
+//				gestionUsuario.eliminarJugador(jugador);
 				break;
 			case 4:
 				menuPrincipal();
@@ -96,34 +88,38 @@ public class Partida {
 	public void pantallaSeleccionJugadores() {
 		Scanner leer = new Scanner (System.in);
 		int numJugadores = 0;
-		boolean exito = false;
+		boolean respuestaNula = false;
 		System.out.println("BIENVENIDO A LA PARTIDA");
 		System.out.println("¿CUÁNTOS JUGADORES VAN A JUGAR?");
 		numJugadores = leer.nextInt();
 		this.jugadoresPartida = new HashSet<TipoJugador>();
-		while((numJugadores > 0) && (!exito)) {
+		while((numJugadores > 0)) {
 			System.out.println("¿DE QUÉ TIPO ES EL JUGADOR: JUGADOR O MÁQUINA?");
 			String tipo = leer.next();
 			try {
 				if (tipo.equalsIgnoreCase("JUGADOR")) {
 					System.out.println("ESCRIBA EL NOMBRE DEL JUGADOR SIN ESPACIOS");
 					String nombre = leer.next();
-					if (GestionUsuario.getJugadoresSistema().contains(nombre)) { //lanza NullPointerException
-						jugadoresPartida.add(new Jugador (nombre));
+					if (gestionUsuario.existeJugador(nombre)) {
+						gestionUsuario.annadirJugador(new Jugador (nombre)); // esta linea es hacer un new a partir del fichero txt
+						this.jugadoresPartida.add(new Jugador (nombre));
 					} else {
-						System.out.println("ESTE JUGADOR NO FIGURA EN EL SISTEMA ¿DESEA DARLO DE ALTA?");
-						if (leer.next().equalsIgnoreCase("SI")) {
-							((GestionUsuario) GestionUsuario.getJugadoresSistema()).añadirJugador(new Jugador(nombre));//lanza NullPointerException
-							jugadoresPartida.add(new Jugador (nombre));
-							exito = true;
-						} else {
-							exito = false;
-							System.err.println("ERROR");
-						}
+						do {
+							respuestaNula = false;
+							System.out.println("ESTE JUGADOR NO FIGURA EN EL SISTEMA ¿DESEA DARLO DE ALTA?");
+							if (leer.next().equalsIgnoreCase("SI")) {
+								this.gestionUsuario.annadirJugador(new Jugador(nombre));
+								this.jugadoresPartida.add(new Jugador (nombre));
+							}else if (leer.next().equalsIgnoreCase("no")){
+								//seleccione otro jugador
+							}else{
+								respuestaNula = true;
+							}
+						}while (respuestaNula);
 					}
 					numJugadores--;
 				}else if (tipo.equalsIgnoreCase("MAQUINA")) {
-					jugadoresPartida.add(new CPU());
+					this.jugadoresPartida.add(new CPU());
 					numJugadores--;
 				} else {
 					System.err.println("ERROR, LOS JUGADORES DEBEN SER JUGADORES O MÁQUINAS");
@@ -169,9 +165,8 @@ public class Partida {
 	 */
 	public ArrayList<TipoJugador> generarOrdenAleatorio() {
 		ArrayList<TipoJugador> jugadoresOrdenados = new ArrayList<TipoJugador>();
-		Set<TipoJugador> jugadoresPartidaAux = new HashSet<TipoJugador>();
-		jugadoresPartidaAux.addAll(jugadoresPartida);
-		Iterator it = jugadoresPartidaAux.iterator();
+		Set<TipoJugador> jugadoresPartidaAux = new HashSet<TipoJugador>(this.jugadoresPartida);
+		Iterator<TipoJugador> it = jugadoresPartidaAux.iterator();
 		while (it.hasNext()) {
 			jugadoresOrdenados.add((TipoJugador) it.next());
 			it.remove();
@@ -296,7 +291,7 @@ public class Partida {
 		GestionPuntos.historico();
 		GestionPuntos.ranking();
 		System.out.println("FIN DE LA PARTIDA");
-		System.out.println("ELIJA UNA DE LAS DOS OPCIONES: \n VOLVER A JUGAR \"n SALIR");
+		System.out.println("ELIJA UNA DE LAS DOS OPCIONES: \n VOLVER A JUGAR \n SALIR");
 		String opcion = leer.next();
 		boolean error = false;
 		do {
