@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>63</x>
+      <y>497</y>
+      <w>175</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Humano
+--
+-puntosRanking: int
+--
++acertarPregunta(boolean): int
++verJugador():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>903</x>
+      <y>273</y>
+      <w>147</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>/TipoPregunta/
+--
+-tipo: String
+--
++generarAleatorio(): int
+/+mostrarPregunta(): void/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>735</x>
+      <y>511</y>
+      <w>161</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>PreguntaMates
+--
+-respuestaCorrecta: int
+--
++mostrarPregunta():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>511</y>
+      <w>161</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>PreguntaLetras
+--
+-respuestaCorrecta: String
+-longitud: int
+--
++mostrarPregunta():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1085</x>
+      <y>511</y>
+      <w>161</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>PreguntaIngles
+--
+-respuestaCorrecta: char
+--
++mostrarPregunta():void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>826</x>
+      <y>357</y>
+      <w>161</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>210.0;10.0;210.0;160.0;10.0;160.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>966</x>
+      <y>357</y>
+      <w>21</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>966</x>
+      <y>357</y>
+      <w>210</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0;280.0;160.0;280.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>259</x>
+      <y>497</y>
+      <w>175</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>CPU
+--
+
+--
++acertarPregunta(boolean): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>294</y>
+      <w>189</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>/tipoJugador/
+--
+-nombre: String
+-puntosHistorico: int
+--
+/+acertarPregunta(boolean):int/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>385</y>
+      <w>224</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>280.0;10.0;230.0;120.0;300.0;120.0;10.0;120.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>294</x>
+      <y>385</y>
+      <w>70</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;120.0;80.0;120.0;80.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>49</x>
+      <y>196</y>
+      <w>476</w>
+      <h>434</h>
+    </coordinates>
+    <panel_attributes>Jugadores
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>714</x>
+      <y>217</y>
+      <w>553</w>
+      <h>434</h>
+    </coordinates>
+    <panel_attributes>Juego
+--
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>315</y>
+      <w>112</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1..4</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>532</x>
+      <y>252</y>
+      <w>154</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Partida
+--
+-jugadores: Jugador
+-preguntas: Pregunta
+--
++jugar():void
++menu():void
++mostrarRanking():void
++mostrarPuntuacion():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>679</x>
+      <y>294</y>
+      <w>238</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;10.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>539</x>
+      <y>434</y>
+      <w>140</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Se omiten los métodos get, 
+set y toString de las clases 
+por simplicidad.
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>56</x>
+      <y>301</y>
+      <w>175</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>GestionUsuario
+--
+-jugadoresSistema: Jugador
+--
++menuJugadores():void
++añadirJugador():boolean
++eliminarJugador():boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>350</y>
+      <w>42</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>490</x>
+      <y>707</y>
+      <w>245</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>GestionHistoricoYranking
+--
+
+--
++rellenarHistorico
++rellenarRanking</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

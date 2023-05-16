@@ -1,0 +1,65 @@
+package clases;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+/**
+ * 
+ * @author Gema García Carballo
+ *
+ */
+public abstract class TipoPregunta {
+	private int tipo;
+
+	
+	//public abstract void mostrarPregunta() throws FileNotFoundException;
+	public static int generarAleatorio(int tope) {
+		int aleatorio = (int) (Math.random()*(tope-1)+1);
+		return aleatorio;
+	}
+	public static int generarAleatorio(int tope, int min) {
+		int aleatorio = (int) (Math.random() * (tope + 1 - min)) + min;
+		return aleatorio;
+	}
+	public static boolean comprobarPregunta(String respuesta, String respuestaCorrecta) {
+		if (respuesta.equalsIgnoreCase(respuestaCorrecta)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+//	public static boolean comprobarPregunta(String respuesta, Set<String> respuestasCorrectas) {
+//		Set<String> respuestasCorrectasAux = new HashSet<String>();
+//		respuestasCorrectasAux.addAll(respuestasCorrectas);
+//		boolean acierto = false;
+//		for (int i = 0; i < respuestasCorrectasAux.size(); i++) {
+//			if (respuestasCorrectasAux.contains(respuesta)) {
+//				acierto = true;
+//			} else {
+//				acierto = false;
+//			}	
+//		}
+//		return acierto;
+//	}
+	/**
+	 * Método que comprueba si la respuesta se encuentra entre el conjunto de respuestas correctas.
+	 * @param respuesta La respuesta del usuario.
+	 * @param respuestasCorrectas Conjunto de respuestas correctas.
+	 * @return true si la respuesta se encuentra entre el conjunto de posibilidades, devuelve false en caso contrario.
+	 */
+	public static boolean comprobarPregunta(String respuesta, ArrayList<String> respuestasCorrectas) {
+		boolean acierto = false;
+		int i = 0;
+		while ((!acierto) && (i < respuestasCorrectas.size())){
+			if (respuesta.equalsIgnoreCase(respuestasCorrectas.get(i))) {
+				acierto = true;
+			}
+			i++;
+		}
+		return acierto;
+	}
+	
+
+}
